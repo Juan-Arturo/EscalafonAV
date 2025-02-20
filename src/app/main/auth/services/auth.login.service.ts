@@ -55,9 +55,16 @@ export class AuthLoginService {
     this.router.navigate(['/auth/login']);
   }
 
-  isLoggedIn(): string | null {
-    return localStorage.getItem('authToken') || '';
+  // isLoggedIn(): string | null {
+  //   return localStorage.getItem('authToken') || '';
+  // }
+  isLoggedIn(): boolean {
+    if (typeof window === 'undefined' || !window.localStorage) {
+      return false; // Evita el uso de localStorage en entornos donde no existe
+    }
+    return localStorage.getItem('authToken') !== null;
   }
+  
 
   isLoggedInInfo(): Observable<boolean> {
     return this.http.get<any>(`${this.apiUrl}/auth/isLoggin`).pipe(

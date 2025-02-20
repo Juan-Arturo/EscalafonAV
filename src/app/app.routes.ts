@@ -6,10 +6,10 @@ import { layoutRoutes } from './main/layout/layout.routes';
 
 // Definición de las rutas principales de la aplicación
 export const routes: Routes = [
-  ...authRoutes,
   ...layoutRoutes,
+  ...authRoutes,
 
-  { path: "", redirectTo: "escalafon", pathMatch: "full" },
+  
   { path: '**', redirectTo: 'escalafon' },
 ];
 
