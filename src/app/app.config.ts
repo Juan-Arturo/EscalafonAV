@@ -17,6 +17,6 @@ export const appConfig: ApplicationConfig = {
      provideRedux({ store }),
      provideClientHydration(withEventReplay()),
      provideHttpClient(withInterceptors([AuthInterceptor])),
-     provideHttpClient(v())
+     provideHttpClient(withFetch())
     ],
 };
