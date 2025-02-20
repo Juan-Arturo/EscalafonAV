@@ -8,7 +8,7 @@ export const layoutRoutes: Routes = [
   {
     path: 'escalafon', // Ruta base para la sección de promette
     component: LayoutComponent, // Componente principal para la vista de promette
-    canActivate: [CoreAuthGuard], // El guard AuthGuard asegura que solo los usuarios autenticados pueden acceder a estas rutas
+    //canActivate: [], // El guard AuthGuard asegura que solo los usuarios autenticados pueden acceder a estas rutas
     children: [
         { path: "contacto", component: LayoutComponent },
     ],
