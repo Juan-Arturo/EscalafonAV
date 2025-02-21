@@ -7,6 +7,7 @@ import { QuickAcessComponent } from './pages/quick-acess/quick-acess.component';
 import { TeammatesComponent } from './pages/teammates/teammates.component';
 import { ContactComponent } from '../../shared/contact/contact.component';
 import { AboutComponent } from './pages/about/about.component';
+import { RegisterFormComponent } from './elements/register-form/register-form.component';
 
 
 
@@ -22,7 +23,8 @@ export const layoutRoutes: Routes = [
         { path: "newslatter", component: NewslatterComponent },
         { path: "access", component: QuickAcessComponent },
         { path: "teammates", component: TeammatesComponent },
-        {path: "contact", component: ContactComponent},
+        { path: "contact", component: ContactComponent},
+        { path: "form", component: RegisterFormComponent},
 
     ],
   },

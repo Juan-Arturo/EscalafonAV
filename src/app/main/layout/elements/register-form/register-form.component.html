@@ -19,25 +19,25 @@
       <div class="container">
 
         <div class="row gy-4">
-            
+
           <!-- Etapas list -->
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <h4>Etapas de registro</h4>
             <p></p>
 
             <div class="services-list">
-              <button class="tab-link active" data-tab="datos-personales">Datos Personales</button>
-              <button class="tab-link" data-tab="domicilio">Domicilio Particular</button>
-              <button class="tab-link" data-tab="plazas">Plazas Actuales de Cobro</button>
-              <button class="tab-link" data-tab="centro-trabajo">Centro de trabajo</button>
-              <button class="tab-link" data-tab="antiguedad">Antigüedad</button>
-              <button class="tab-link" data-tab="archivos">Carga de archivos</button>
+              <button class="tab-link" [class.active]="isActive('datos-personales')" (click)="setActive('datos-personales')">Datos Personales</button>
+              <button class="tab-link" [class.active]="isActive('domicilio')" (click)="setActive('domicilio')">Domicilio Particular</button>
+              <button class="tab-link" [class.active]="isActive('plazas')" (click)="setActive('plazas')">Plazas Actuales de Cobro</button>
+              <button class="tab-link" [class.active]="isActive('centro-trabajo')" (click)="setActive('centro-trabajo')">Centro de trabajo</button>
+              <button class="tab-link" [class.active]="isActive('antiguedad')" (click)="setActive('antiguedad')">Antigüedad</button>
+              <button class="tab-link" [class.active]="isActive('archivos')" (click)="setActive('archivos')">Carga de archivos</button>
             </div>
           </div>
           <!-- End Etapas list -->
 
           <!-- Form datos personales -->
-          <div class="col-lg-8 tab-content active" id="datos-personales" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-8 tab-content" [class.active]="isActive('datos-personales')">
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
@@ -149,7 +149,7 @@
           </div><!-- End Form datos personales -->
 
           <!-- Form domicilio -->
-          <div class="col-lg-8 tab-content" id="domicilio" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-8 tab-content" [class.active]="isActive('domicilio')">
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
@@ -245,7 +245,7 @@
           </div><!-- End Form domicilio -->
 
           <!-- Form plazas -->
-          <div class="col-lg-8 tab-content" id="plazas" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-8 tab-content" [class.active]="isActive('plazas')">
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
@@ -335,7 +335,7 @@
           </div><!-- End Form plazas -->
 
           <!-- Form Centro de Trabajo -->
-          <div class="col-lg-8 tab-content" id="centro-trabajo" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-8 tab-content" [class.active]="isActive('centro-trabajo')">
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
@@ -383,7 +383,7 @@
           </div><!-- End Form Centro de Trabajo -->
 
           <!-- Form antiguedad -->
-          <div class="col-lg-8 tab-content" id="antiguedad" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-8 tab-content" [class.active]="isActive('antiguedad')">
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
@@ -441,7 +441,7 @@
           </div><!-- End Form antiguedad -->
 
           <!-- Form Carga de archivos -->
-          <div class="col-lg-8 tab-content" id="archivos" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-8 tab-content" [class.active]="isActive('archivos')">
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
