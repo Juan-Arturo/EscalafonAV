@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core'; // Importa el decorador Injectable para que el servicio sea inyectable
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2'; // Importa SweetAlert2 para crear alertas personalizadas
 
 @Injectable({
   providedIn: 'root', // Define que este servicio se provee a nivel de la raíz (disponible Coremente)
 })
 export class CoreAlertService {
-  constructor() { } // Constructor vacío ya que no se necesita dependencias adicionales en este caso
+  constructor(private router: Router) { } // Constructor vacío ya que no se necesita dependencias adicionales en este caso
 
   // Muestra un mensaje de bienvenida
   showWelcomeMessage(message: string = '¡Bienvenido a la aplicación!') {
@@ -69,6 +70,23 @@ export class CoreAlertService {
       showCancelButton: true, // Muestra el botón de cancelación
       confirmButtonText: 'Aceptar', // Texto del botón de confirmación
       cancelButtonText: 'Cancelar', // Texto del botón de cancelación
+    });
+  }
+
+
+  // Alerta para solicitar inicio de sesión
+  requestLogin() {
+    Swal.fire({
+      title: 'Inicia sesión',
+      text: 'Debes iniciar sesión para acceder a este recurso.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Iniciar sesión',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/escalafon/about'])
+      }
     });
   }
 }
