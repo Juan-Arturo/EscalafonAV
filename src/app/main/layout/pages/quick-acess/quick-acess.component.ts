@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from 'express';
 import Swal from 'sweetalert2';
+import { title } from 'process';
 
 
 @Component({
@@ -17,7 +18,10 @@ export class QuickAcessComponent{
 
 
   loginAlert() {
-    this.alertService.requestLogin("/escalafon/form")
+    const title:string ="Inicia Sesión"
+    const message: string = "Debes iniciar sesión para acceder a este recurso."
+    const route: string = "/escalafon/form"
+    this.alertService.requestLogin(title,message,route)
   }
  
  

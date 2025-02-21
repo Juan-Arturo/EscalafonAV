@@ -75,14 +75,14 @@ export class CoreAlertService {
 
 
   // Alerta para solicitar inicio de sesión
-  requestLogin(route: string) {
+  requestLogin(title: string = 'Inicia sesión', message:string, route: string) {
     Swal.fire({
-      title: 'Inicia sesión',
-      text: 'Debes iniciar sesión para acceder a este recurso.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Iniciar sesión',
-      cancelButtonText: 'Cancelar',
+      title: title, // Título de la alerta (Inicia sesión)
+      text: message, // El mensaje que se pasa como argumento
+      icon: 'warning', // Tipo de icono (advertencia)
+      showCancelButton: true, // Muestra el botón de cancelación
+      confirmButtonText: 'Iniciar sesión', // Texto del botón de confirmación
+      cancelButtonText: 'Cancelar', // Texto del botón de cancelación
     }).then((result) => {
       if (result.isConfirmed) {
         this.router.navigate([route])
@@ -90,3 +90,4 @@ export class CoreAlertService {
     });
   }
 }
+ 
