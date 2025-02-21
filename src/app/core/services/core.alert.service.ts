@@ -75,7 +75,7 @@ export class CoreAlertService {
 
 
   // Alerta para solicitar inicio de sesión
-  requestLogin() {
+  requestLogin(route: string) {
     Swal.fire({
       title: 'Inicia sesión',
       text: 'Debes iniciar sesión para acceder a este recurso.',
@@ -85,7 +85,7 @@ export class CoreAlertService {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.router.navigate(['/escalafon/about'])
+        this.router.navigate([route])
       }
     });
   }

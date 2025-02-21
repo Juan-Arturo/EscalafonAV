@@ -17,7 +17,7 @@ export class QuickAcessComponent{
 
 
   loginAlert() {
-    this.alertService.requestLogin()
+    this.alertService.requestLogin("/escalafon/form")
   }
  
  
