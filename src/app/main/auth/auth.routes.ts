@@ -6,6 +6,8 @@ import { AuthRegisterComponent } from './pages/auth-register/auth-register.compo
 import { CoreLoginGuard } from '../../core/guards/core.login.guard';
 import { AuthLoginComponent } from './pages/auth-login/auth-login.component';
 import { RestorePasswordComponent } from './pages/restore-password/restore-password.component';
+import { LoginAuthComponent } from './pages/login-auth/login-auth.component';
+import { RegisterAuthComponent } from './pages/register-auth/register-auth.component';
 
 // Definición de las rutas asociadas al módulo de autenticación
 export const authRoutes: Routes = [
@@ -19,6 +21,8 @@ export const authRoutes: Routes = [
       { path: 'register', component: AuthRegisterComponent }, // Ruta para registrar un nuevo usuario
       { path: 'restorePassword/:token', component: RestorePasswordComponent }, // Ruta para registrar un nuevo usuario
       { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirección predeterminada a 'login' si no se especifica ninguna subruta
+      { path: 'loginMain', component: LoginAuthComponent },
+      { path: 'registerMain', component: RegisterAuthComponent },
     ],
   },
 ];
