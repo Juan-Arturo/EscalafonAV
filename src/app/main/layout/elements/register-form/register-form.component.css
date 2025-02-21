@@ -1,0 +1,144 @@
+/*--------------------------------------------------------------
+# Service Details Section
+--------------------------------------------------------------*/
+.service-details .services-list {
+  background-color: var(--surface-color);
+  padding: 10px 30px;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  margin-bottom: 20px;
+}
+
+/* .service-details .services-list a {
+  display: block;
+  line-height: 1;
+  padding: 8px 0 8px 15px;
+  border-left: 3px solid
+    color-mix(in srgb, var(--default-color), transparent 70%);
+  margin: 20px 0;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  transition: 0.3s;
+}
+
+.service-details .services-list a.active {
+  color: var(--heading-color);
+  font-weight: 700;
+  border-color: var(--accent-color);
+}
+
+.service-details .services-list a:hover {
+  border-color: var(--accent-color);
+} */
+
+.service-details .services-list button {
+  all: unset;
+  display: block;
+  width: 100%;
+  text-align: left;
+  line-height: 1;
+  padding: 8px 0 8px 15px;
+  border-left: 3px solid color-mix(in srgb, var(--default-color), transparent 70%);
+  margin: 20px 0;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.service-details .services-list button.active {
+  color: var(--heading-color);
+  font-weight: 700;
+  border-color: var(--accent-color);
+}
+
+.service-details .services-list button:hover {
+  border-color: var(--accent-color);
+}
+
+.service-details .services-img {
+  margin-bottom: 20px;
+}
+
+.service-details h3 {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.service-details h4 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.service-details p {
+  font-size: 15px;
+}
+
+.service-details ul {
+  list-style: none;
+  padding: 0;
+  font-size: 15px;
+}
+
+.service-details ul li {
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+.service-details ul i {
+  font-size: 20px;
+  margin-right: 8px;
+  color: var(--accent-color);
+}
+
+/*--------------------------------------------------------------
+# Custom Section
+--------------------------------------------------------------*/
+.starter-section {
+  /* Add your styles here */
+}
+
+.heading-decor svg {
+  fill: var(--heading-color);
+}
+
+/* Estilos para el ícono en modo web */
+.icon {
+  width: 130%;
+}
+
+/* Media query para ajustar el ícono en dispositivos móviles */
+@media (max-width: 768px) {
+  .icon {
+    width: 10%;
+    /* Tamaño fijo para dispositivos móviles */
+  }
+}
+
+.tab-content {
+  display: none; /* Oculta todas las pestañas por defecto */
+  padding: 15px;
+  border-radius: 5px;
+  opacity: 0; /* Comienza invisible */
+  transition: opacity 0.1s ease-in-out; /* Transición rápida */
+}
+
+.tab-content.active {
+  display: block; /* Muestra solo la pestaña activa */
+  opacity: 1; /* Totalmente visible */
+}
+
+.tab-link {
+  scroll-behavior: auto; /* Desactiva el desplazamiento suave solo para los tabs */
+}
+
+.hr{
+    border: none; /* Quitar borde predeterminado */
+    height: 3px; /* Altura de la línea */
+
+    /* Color de la línea */
+    background-color: #572772;
+    margin: 20px 0; /* Márgenes superior e inferior */
+    width: 50%; /* Ancho de la línea */
+    
+    border-radius: 10px; /* Esquinas redondeadas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+}
