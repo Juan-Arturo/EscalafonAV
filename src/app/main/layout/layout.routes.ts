@@ -4,6 +4,7 @@ import { LayoutComponent } from './layout.component';
 import { HomeComponent } from './pages/home/home.component';
 
 
+
 // Definición de las rutas asociadas a la sección de promette
 export const layoutRoutes: Routes = [
   {
@@ -12,6 +13,7 @@ export const layoutRoutes: Routes = [
     // canActivate: [CoreAuthGuard], // El guard AuthGuard asegura que solo los usuarios autenticados pueden acceder a estas rutas
     children: [
         { path: "home", component: HomeComponent },
+
     ],
   },
 

@@ -1,0 +1,220 @@
+<div class="card-header text-center">
+  <h3>Registrarse</h3>
+</div>
+<div class="card-body p-2">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <!-- Nombre de usuario -->
+    <div class="form-group">
+      <label for="nombre_usuario">Nombre de usuario (Ej. ElJefe)</label>
+      <input
+        type="text"
+        id="nombre_usuario"
+        class="form-control mb-2"
+        formControlName="nombre_usuario"
+        (blur)="
+          validateField(
+            'nombre_usuario',
+            registerForm.get('nombre_usuario')?.value
+          )
+        "
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('nombre_usuario')?.invalid &&
+            registerForm.get('nombre_usuario')?.touched
+        }"
+      />
+      <div
+        *ngIf="registerForm.get('nombre_usuario')?.hasError('fieldTaken')"
+        class="text-danger"
+      >
+        Este nombre de usuario no esta permitido
+      </div>
+      <div
+        *ngIf="
+          registerForm.get('nombre_usuario')?.invalid &&
+          registerForm.get('nombre_usuario')?.touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="registerForm.get('nombre_usuario')?.errors?.['required']">
+          Nombre es requerido
+        </div>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control mb-2"
+        formControlName="email"
+        (blur)="validateField('email', registerForm.get('email')?.value)"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('email')?.invalid &&
+            registerForm.get('email')?.touched
+        }"
+      />
+      <div
+        *ngIf="registerForm.get('email')?.hasError('fieldTaken')"
+        class="text-danger"
+      >
+        Este email ya está registrado.
+      </div>
+      <div
+        *ngIf="
+          registerForm.get('email')?.invalid &&
+          registerForm.get('email')?.touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="registerForm.get('email')?.errors?.['required']">
+          Email es requerido
+        </div>
+        <div *ngIf="registerForm.get('email')?.errors?.['email']">
+          Formato de email inválido
+        </div>
+      </div>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="form-group">
+      <label for="telefono">Teléfono</label>
+      <input
+        type="text"
+        id="telefono"
+        class="form-control mb-2"
+        formControlName="telefono"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('telefono')?.invalid &&
+            registerForm.get('telefono')?.touched
+        }"
+      />
+
+      <div
+        *ngIf="
+          registerForm.get('telefono')?.invalid &&
+          registerForm.get('telefono')?.touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="registerForm.get('telefono')?.errors?.['required']">
+          Teléfono es requerido
+        </div>
+      </div>
+    </div>
+
+    <!-- CURP -->
+    <div class="form-group">
+      <label for="curp">CURP</label>
+      <input
+        type="text"
+        id="curp"
+        class="form-control mb-2"
+        formControlName="curp"
+        (blur)="validateField('curp', registerForm.get('curp')?.value)"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('curp')?.invalid &&
+            registerForm.get('curp')?.touched
+        }"
+      />
+      <div
+        *ngIf="registerForm.get('curp')?.hasError('fieldTaken')"
+        class="text-danger"
+      >
+        Este CURP ya está registrado.
+      </div>
+      <div
+        *ngIf="
+          registerForm.get('curp')?.invalid && registerForm.get('curp')?.touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="registerForm.get('curp')?.errors?.['required']">
+          CURP es requerido
+        </div>
+        <div *ngIf="registerForm.get('curp')?.errors?.['pattern']">
+          CURP invalido
+        </div>
+      </div>
+    </div>
+
+    <!-- Contraseña -->
+    <div class="form-group">
+      <label for="contrasena">Contraseña</label>
+      <input
+        type="password"
+        id="contrasena"
+        class="form-control mb-2"
+        formControlName="contrasena"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('contrasena')?.invalid &&
+            registerForm.get('contrasena')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          registerForm.get('contrasena')?.invalid &&
+          registerForm.get('contrasena')?.touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="registerForm.get('contrasena')?.errors?.['required']">
+          Contraseña es requerida
+        </div>
+        <div *ngIf="registerForm.get('contrasena')?.errors?.['minlength']">
+          Contraseña debe tener al menos 6 caracteres
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmar Contraseña -->
+    <div class="form-group">
+      <label for="confirmPassword">Confirmar Contraseña</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        class="form-control"
+        formControlName="confirmPassword"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('confirmPassword')?.invalid &&
+            registerForm.get('confirmPassword')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          registerForm.get('confirmPassword')?.invalid &&
+          registerForm.get('confirmPassword')?.touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">
+          Confirmar contraseña es requerida
+        </div>
+        <div *ngIf="registerForm.get('confirmPassword')?.errors?.['mustMatch']">
+          Las contraseñas no coinciden
+        </div>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 mt-4">
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        [disabled]="registerForm.invalid"
+      >
+        Registrarse
+      </button>
+
+      <div class="d-flex justify-content-between mt-3">
+        <a routerLink="/auth/login" class="btn btn-link p-0">Iniciar sesión</a>
+      </div>
+    </div>
+  </form>
+</div>
