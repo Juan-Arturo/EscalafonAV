@@ -146,3 +146,18 @@
 a {
   cursor: pointer;
 }
+
+.btn-primary {
+  border: none;
+  background-color: #572772;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: #572772;
+  border: 2px solid #572772;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+}
