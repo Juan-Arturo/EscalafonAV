@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TabService } from '../../../../core/services/tab.service';
+import {  FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register-form',
@@ -7,8 +8,21 @@ import { TabService } from '../../../../core/services/tab.service';
   styleUrl: './register-form.component.css'
 })
 export class RegisterFormComponent implements OnInit {
+    dataForm!: FormGroup;
 
-  constructor(public tabService: TabService) {}
+  constructor(public tabService: TabService,private fb: FormBuilder,) {}
+ 
+
+
+//   ngOnInit(): void {
+//   this.tabService.setActiveTab('datos-personales');
+//   this.dataForm = this.fb.group({
+//     nombre: ['', [Validators.required]],
+//     apellido: ['', [Validators.required]],
+//     correo: ['', [Validators.required, Validators.email]],
+//   });
+// }
+
 
   ngOnInit(): void {
     this.tabService.setActiveTab('datos-personales');
@@ -20,5 +34,10 @@ export class RegisterFormComponent implements OnInit {
 
   isActive(tabId: string): boolean {
     return this.tabService.isActive(tabId);
+  }
+
+
+  onSubmit(){
+    console.log("guardado...w")
   }
 }

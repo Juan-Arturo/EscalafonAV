@@ -47,7 +47,7 @@
 }
 
 .inputForm:focus-within {
-  border: 1.5px solid #2d79f3;
+  border: 1.5px solid #b6b6b6;
 }
 
 .flex-row {
@@ -67,7 +67,7 @@
 .span {
   font-size: 14px;
   margin-left: 5px;
-  color: #2d79f3;
+  color: #5a2a82;
   font-weight: 500;
   cursor: pointer;
 }
@@ -110,13 +110,13 @@
   background-color: white;
   cursor: pointer;
   transition: 0.2s ease-in-out;
+
 }
 
 .btn:hover {
   border: 1px solid #2d79f3;
   ;
 }
-
 
 /*--------------------------------------------------------------
 # Global Page Titles & Breadcrumbs
@@ -152,4 +152,5 @@
   display: inline-block;
   padding-right: 10px;
   color: color-mix(in srgb, var(--default-color), transparent 70%);
+
 }
