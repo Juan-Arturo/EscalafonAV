@@ -16,10 +16,16 @@
     <!-- Service Details Section -->
     <section id="service-details" class="service-details section">
 
+      <!-- Container -->
       <div class="container">
 
+        <!-- Row container -->
         <div class="row gy-4">
+       
+          
 
+
+          
           <!-- Etapas list -->
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <h4>Etapas de registro</h4>
@@ -33,11 +39,13 @@
               <button class="tab-link" [class.active]="isActive('antiguedad')" (click)="setActive('antiguedad')">Antigüedad</button>
               <button class="tab-link" [class.active]="isActive('archivos')" (click)="setActive('archivos')">Carga de archivos</button>
             </div>
-          </div>
-          <!-- End Etapas list -->
-
+          </div><!-- End Etapas list -->
+      
+        <div class="col-lg-8">
+          <form (ngSubmit)="onSubmit()">
           <!-- Form datos personales -->
-          <div class="col-lg-8 tab-content" [class.active]="isActive('datos-personales')">
+          <div class="tab-content" [class.active]="isActive('datos-personales')">
+            
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
@@ -146,10 +154,11 @@
                 </div>
               </div>
             </div>
+            
           </div><!-- End Form datos personales -->
 
           <!-- Form domicilio -->
-          <div class="col-lg-8 tab-content" [class.active]="isActive('domicilio')">
+          <div class="tab-content" [class.active]="isActive('domicilio')">
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
@@ -245,7 +254,7 @@
           </div><!-- End Form domicilio -->
 
           <!-- Form plazas -->
-          <div class="col-lg-8 tab-content" [class.active]="isActive('plazas')">
+          <div class="tab-content" [class.active]="isActive('plazas')">
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
@@ -335,7 +344,7 @@
           </div><!-- End Form plazas -->
 
           <!-- Form Centro de Trabajo -->
-          <div class="col-lg-8 tab-content" [class.active]="isActive('centro-trabajo')">
+          <div class="tab-content" [class.active]="isActive('centro-trabajo')">
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
@@ -383,7 +392,7 @@
           </div><!-- End Form Centro de Trabajo -->
 
           <!-- Form antiguedad -->
-          <div class="col-lg-8 tab-content" [class.active]="isActive('antiguedad')">
+          <div class="tab-content" [class.active]="isActive('antiguedad')">
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
@@ -441,7 +450,7 @@
           </div><!-- End Form antiguedad -->
 
           <!-- Form Carga de archivos -->
-          <div class="col-lg-8 tab-content" [class.active]="isActive('archivos')">
+          <div class="tab-content" [class.active]="isActive('archivos')">
             <div class="mt-3">
               <div class="heading-decor mb-3">
                 <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 850.3 16" xml:space="preserve">
@@ -455,16 +464,21 @@
             </div>
             <p></p>
 
-            <div class="row gy-4">
+            <div class="row gy-">
+              <button class="btn btn-primary" type="button">Terminar registro</button>
             </div>
+
 
           </div><!-- End Form Carga de archivos -->
 
-        </div>
+          </form>  
+        </div><!-- End div principal -->
 
-      </div>
+  
+  
+        </div><!-- End Row container -->
+      </div><!-- End Container -->
 
-    </section>
-    <!-- End Service Details Section -->
+    </section><!-- End Service Details Section -->
 
   </main>
