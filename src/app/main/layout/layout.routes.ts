@@ -26,7 +26,6 @@ export const layoutRoutes: Routes = [
         { path: "teammates", component: TeammatesComponent },
         { path: "contact", component: ContactComponent},
         { path: "form", component: RegisterFormComponent},
-
     ],
   },
 
