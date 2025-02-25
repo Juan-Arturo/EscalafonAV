@@ -102,6 +102,7 @@
         id="curp"
         class="input"
         placeholder="Ingresa tu CURP"
+        onKeyUp="this.value=this.value.toUpperCase();"
         formControlName="curp"
         (blur)="validateField('curp', registerForm.get('curp')?.value)"
         [ngClass]="{
@@ -262,7 +263,7 @@
       ¿Ya estás registrado?
       <a routerLink="/auth/loginMain" class="span">Inicia sesión</a>  
       o  
-      <a routerLink="/escalafone" class="span">Volver a escalafone</a>
+      <a routerLink="/escalafone" class="span">Volver al portal</a>
     </p>
     
     
