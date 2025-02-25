@@ -6,81 +6,151 @@
         <h2>Avisos</h2>
       </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper" data-speed="600" data-delay="5000" data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
-                },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 20
-                }
-              }
-            }
-          </script>
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="https://cdn-icons-png.freepik.com/512/5974/5974693.png" class="testimonial-img" alt="">
-                <h3>Aviso importante</h3>
-                <h4>23-04-2025</h4>
+    
+      <div class="container position-relative">
+        <div id="noticesCarousel" class="carousel slide px-5" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <!-- Primer grupo -->
+            <div class="carousel-item active">
+              <div class="row g-4">
+                <div class="col-lg-4">
+                  <div class="notice-card">
+                    <div class="notice-date">
+                      <span class="day">23</span>
+                      <span class="month">ABR</span>
+                      <span class="year">2025</span>
+                    </div>
+                    <div class="notice-content">
+                      <div class="notice-icon">
+                        <i class="bi bi-bell-fill"></i>
+                      </div>
+                      <h3 class="notice-title">Aviso Importante</h3>
+                      <p class="notice-text">
+                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="notice-card">
+                    <div class="notice-date">
+                      <span class="day">15</span>
+                      <span class="month">MAY</span>
+                      <span class="year">2025</span>
+                    </div>
+                    <div class="notice-content">
+                      <div class="notice-icon">
+                        <i class="bi bi-calendar-event"></i>
+                      </div>
+                      <h3 class="notice-title">Evento Próximo</h3>
+                      <p class="notice-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="notice-card">
+                    <div class="notice-date">
+                      <span class="day">30</span>
+                      <span class="month">JUN</span>
+                      <span class="year">2025</span>
+                    </div>
+                    <div class="notice-content">
+                      <div class="notice-icon">
+                        <i class="bi bi-megaphone"></i>
+                      </div>
+                      <h3 class="notice-title">Comunicado</h3>
+                      <p class="notice-text">
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
 
-
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="https://cdn-icons-png.freepik.com/512/5974/5974693.png" class="testimonial-img" alt="">
-                <h3>Aviso importante</h3>
-                <h4>23-04-2025</h4>
+            <!-- Segundo grupo -->
+            <div class="carousel-item">
+              <div class="row g-4">
+                <div class="col-lg-4">
+                  <div class="notice-card">
+                    <div class="notice-date">
+                      <span class="day">05</span>
+                      <span class="month">JUL</span>
+                      <span class="year">2025</span>
+                    </div>
+                    <div class="notice-content">
+                      <div class="notice-icon">
+                        <i class="bi bi-star"></i>
+                      </div>
+                      <h3 class="notice-title">Nuevo Aviso</h3>
+                      <p class="notice-text">
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="notice-card">
+                    <div class="notice-date">
+                      <span class="day">12</span>
+                      <span class="month">JUL</span>
+                      <span class="year">2025</span>
+                    </div>
+                    <div class="notice-content">
+                      <div class="notice-icon">
+                        <i class="bi bi-info-circle"></i>
+                      </div>
+                      <h3 class="notice-title">Información</h3>
+                      <p class="notice-text">
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="notice-card">
+                    <div class="notice-date">
+                      <span class="day">20</span>
+                      <span class="month">JUL</span>
+                      <span class="year">2025</span>
+                    </div>
+                    <div class="notice-content">
+                      <div class="notice-icon">
+                        <i class="bi bi-flag"></i>
+                      </div>
+                      <h3 class="notice-title">Actualización</h3>
+                      <p class="notice-text">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="https://cdn-icons-png.freepik.com/512/5974/5974693.png" class="testimonial-img" alt="">
-                <h3>Aviso importante</h3>
-                <h4>23-04-2025</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
+            </div>
           </div>
-          <div class="swiper-pagination"></div>
+
+          <!-- Controles del carrusel -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#noticesCarousel" data-bs-slide="prev" style="left: -60px;">
+            <i class="bi bi-chevron-left fs-1"></i>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#noticesCarousel" data-bs-slide="next" style="right: -60px;">
+            <i class="bi bi-chevron-right fs-1"></i>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+
+          <!-- Indicadores -->
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#noticesCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Grupo 1"></button>
+            <button type="button" data-bs-target="#noticesCarousel" data-bs-slide-to="1" aria-label="Grupo 2"></button>
+          </div>
         </div>
 
+        
+          
+        
       </div>
-
+      
     </section><!-- /Notices Section -->
