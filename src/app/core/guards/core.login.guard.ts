@@ -23,7 +23,7 @@ export class CoreLoginGuard implements CanActivate {
   ): boolean {
     if (this.authService.isLoggedIn()) {
       // Si el usuario está autenticado, redirige a la página de panel
-      this.router.navigate(['escalafon']);
+      this.router.navigate(['escalafon/form']);
       return false; // Bloquea el acceso a la ruta actual
     } else {
       // Si el usuario no está autenticado, permite el acceso a la ruta actual (login)
