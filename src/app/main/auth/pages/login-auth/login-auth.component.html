@@ -1,6 +1,5 @@
 <!-- From Uiverse.io by micaelgomestavares -->
 <div>
-
   <form class="form page-title" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <img src="/public/img/Logos/florColor2.png" alt="" />
 
@@ -101,9 +100,18 @@
       <div class="flex-row"></div>
     </div>
 
-    <button class="button-submit">Ingresar</button>
+    <button type="submit" class="button-submit" [disabled]="loginForm.invalid">
+      Ingresar
+    </button>
+
+   
     
-    <p class="p">¿No estás registrado? <span class="span">Registrate</span>
+    <p class="p">
+      ¿No estás registrado?
+      <a routerLink="/auth/registerMain" class="span">Registrarse</a>
+      o  
+      <a routerLink="/escalafone" class="span">Volver a escalafone</a>
+    </p>
+
   </form>
 </div>
-

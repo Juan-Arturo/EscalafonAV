@@ -10,7 +10,11 @@ export const routes: Routes = [
   ...authRoutes,
 
   
+
+  { path: "", redirectTo: "escalafon", pathMatch: "full" },
   { path: '**', redirectTo: 'escalafon' },
+  
+
 ];
 
 

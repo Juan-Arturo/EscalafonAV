@@ -1,53 +1,270 @@
-<!-- From Uiverse.io by micaelgomestavares --> 
+<!-- From Uiverse.io by micaelgomestavares -->
 <div>
-    <form class="form page-title">
-        <h1 class="text-align-center">Registrate</h1>
-        <div class="flex-column">
-          <label>Nombre </label>
-          <div class="inputForm">
-            <i class="bi bi-person-circle"></i>
-            <input type="text" class="input" placeholder="Ingresa tu nombre">
-          </div>
-        </div> 
+  
+  <form
+    class="form page-title"
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <h1 class="text-align-center">Registrate</h1>
 
-        <div class="flex-column">
-          <label>Apellido paterno </label>
-          <div class="inputForm">
-            <i class="bi bi-person-circle"></i>
-            <input type="text" class="input" placeholder="Ingresa tu primer apellido">
-          </div>
-        </div> 
+    <!-- Nombre -->
 
-        <div class="flex-column">
-          <label>Apellido materno </label>
-          <div class="inputForm">
-            <i class="bi bi-person-circle"></i>
-            <input type="text" class="input" placeholder="Ingresa tu segundo apellido">
-          </div>
-        </div> 
+    <div class="form-group">
+      <div class="flex-column">
+        <label for="nombre_usuario">Nombre Completo </label>
+        <div class="inputForm">
+          <i class="bi bi-person-circle"></i>
+          <input
+            type="text"
+            id="nombre_usuario"
+            class="input"
+            placeholder="Ingresa tu nombre"
+            formControlName="nombre_usuario"
+            (blur)="
+              validateField(
+                'nombre_usuario',
+                registerForm.get('nombre_usuario')?.value
+              )
+            "
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('nombre_usuario')?.invalid &&
+                registerForm.get('nombre_usuario')?.touched,
+                
+            }"
+          />
 
-        <div class="flex-column">
-          <label>Correo electrónico </label>
-          <div class="inputForm">
-            <i class="bi bi-envelope-fill"></i>
-            <input type="text" class="input" placeholder="Ingresa tu correo">
+          <div class="inputForm"
+            *ngIf="registerForm.get('nombre_usuario')?.hasError('fieldTaken')"
+            class="text-danger"
+          >
+            Nombre invalido
           </div>
-        </div> 
-        
-        <div class="flex-column">
-          <label>Contraseña </label>
-          <div class="inputForm">
-            <svg height="20" viewBox="-64 0 512 512" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"></path><path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path></svg>        
-            <input type="password" class="input" placeholder="Ingresa tu contraseña">
+          <div
+            *ngIf="
+              registerForm.get('nombre_usuario')?.invalid &&
+              registerForm.get('nombre_usuario')?.touched
+            "
+            class="invalid-feedback"
+          >
+            <div
+              *ngIf="registerForm.get('nombre_usuario')?.errors?.['required']"
+            >
+              Nombre es requerido
+            </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="flex-row">
+    <!-- Teléfono -->
+    <div class="form-group">
+      <div class="flex-column"></div>
+      <label for="telefono">Teléfono</label>
+      <div class="inputForm">
+        <i class="bi bi-telephone-fill"></i>
+      <input
+        type="text"
+        id="telefono"
+        class="input"
+        placeholder="Ingresa tu telefono"
+        formControlName="telefono"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('telefono')?.invalid &&
+            registerForm.get('telefono')?.touched
+        }"
+      />
+
+      <div
+        *ngIf="
+          registerForm.get('telefono')?.invalid &&
+          registerForm.get('telefono')?.touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="registerForm.get('telefono')?.errors?.['required']">
+          Teléfono es requerido
         </div>
-    
-        <button class="button-submit">Registrarme</button>
+      </div>
+    </div>
+    </div>
 
-        <p class="p">¿Ya estás registrado? <span class="span">Inicia sesión</span>
+    <!-- CURP -->
+    <div class="form-group">
+      <div class="flex-column">
+      <label for="curp">CURP</label>
+      <div class="inputForm">
+        <i class="bi bi-person-vcard-fill"></i>
+      <input
+        type="text"
+        id="curp"
+        class="input"
+        placeholder="Ingresa tu CURP"
+        formControlName="curp"
+        (blur)="validateField('curp', registerForm.get('curp')?.value)"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('curp')?.invalid &&
+            registerForm.get('curp')?.touched
+        }"
+      />
+      <div
+        *ngIf="registerForm.get('curp')?.hasError('fieldTaken')"
+        class="text-danger"
+      >
+         curp ya registrado.
+      </div>
+      <div
+        *ngIf="
+          registerForm.get('curp')?.invalid && registerForm.get('curp')?.touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="registerForm.get('curp')?.errors?.['required']">
+          CURP es requerido
+        </div>
+        <div *ngIf="registerForm.get('curp')?.errors?.['pattern']">
+          CURP invalido
+        </div>
+      </div>
+    </div>
+      </div>
+      
+    </div>
+
+    <!-- Correo Electronico -->
+    <div class="form-group">
+      <div class="flex-column">
+        <label for="email">Correo electrónico </label>
+        <div class="inputForm">
+          <i class="bi bi-envelope-fill"></i>
+          <input
+            type="email"
+            id="email"
+            class="input"
+            placeholder="Ingresa tu correo"
+            formControlName="email"
+            (blur)="validateField('email', registerForm.get('email')?.value)"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('email')?.invalid &&
+                registerForm.get('email')?.touched
+            }"
+          />
+          <div
+            *ngIf="registerForm.get('email')?.hasError('fieldTaken')"
+            class="text-danger"
+          >
+            Email ya registrado.
+          </div>
+          <div
+            *ngIf="
+              registerForm.get('email')?.invalid &&
+              registerForm.get('email')?.touched
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="registerForm.get('email')?.errors?.['required']">
+              Email es requerido
+            </div>
+            <div *ngIf="registerForm.get('email')?.errors?.['email']">
+              Formato de email inválido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contraseña -->
+    <div class="form-group">
+      <div class="flex-column">
+      <label for="contrasena">Contraseña</label>
+      <div class="inputForm">
+        <i class="bi bi-shield-fill"></i>
+      <input
+        type="password"
+        id="contrasena"
+        class="input"
+        placeholder="Ingresa tu contraseña"
+        formControlName="contrasena"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('contrasena')?.invalid &&
+            registerForm.get('contrasena')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          registerForm.get('contrasena')?.invalid &&
+          registerForm.get('contrasena')?.touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="registerForm.get('contrasena')?.errors?.['required']">
+          Contraseña es requerida
+        </div>
+        <div *ngIf="registerForm.get('contrasena')?.errors?.['minlength']">
+          Contraseña debe tener al menos 6 caracteres
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Confirmar Contraseña -->
+    <div class="form-group">
+      <div class="flex-column"></div>
+      <label for="confirmPassword">Confirmar Contraseña</label>
+      <div class="inputForm">
+        <i class="bi bi-shield-fill-check"></i>
+      <input
+        type="password"
+        id="confirmPassword"
+        class="input"
+        placeholder="Confirma tu contraseña"
+        formControlName="confirmPassword"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('confirmPassword')?.invalid &&
+            registerForm.get('confirmPassword')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          registerForm.get('confirmPassword')?.invalid &&
+          registerForm.get('confirmPassword')?.touched
+        "
+        class="invalid-feedback"
+      >
+        <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">
+          Confirmar contraseña es requerida
+        </div>
+        <div *ngIf="registerForm.get('confirmPassword')?.errors?.['mustMatch']">
+          Las contraseñas no coinciden
+        </div>
+      </div>
+    </div>
+    </div>
     
-    </form>
+    
+
+    <button
+      type="submit"
+      class="button-submit"
+      [disabled]="registerForm.invalid"
+    >
+      Registrarme
+    </button>
+
+    <p class="p">
+      ¿Ya estás registrado?
+      <a routerLink="/auth/loginMain" class="span">Inicia sesión</a>  
+      o  
+      <a routerLink="/escalafone" class="span">Volver a escalafone</a>
+    </p>
+    
+    
+  </form>
 </div>
