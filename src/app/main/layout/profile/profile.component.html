@@ -1,0 +1,623 @@
+<p-tabs value="0">
+  <p-tablist>
+    @for (tab of tabs; track tab.value) {
+    <p-tab (click)="changeTab(tab.value)" [value]="tab.value">
+      <h2>{{ tab.title }}</h2>
+    </p-tab>
+    }
+  </p-tablist>
+  <p-tabpanels>
+    <p-tabpanel [value]="'0'">
+      <form [formGroup]="profileForm">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 col-lg-4 row">
+              <div class="card">
+                <div class="card-body">
+                  <div class="col-12 row">
+                    <div class="col-md-12">
+                      <h3>Información del Perfil</h3>
+                      <hr style="width: 100%" />
+                    </div>
+
+                    <div class="row pt-5 pb-5">
+                      <div class="col-md-6 offset-md-3 text-center">
+                        <div class="profile-photo-container position-relative">
+                          <!-- Si no hay imagen, muestra un avatar predeterminado -->
+                          <img
+                            *ngIf="!profileImage"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKaiKiPcLJj7ufrj6M2KaPwyCT4lDSFA5oog&s"
+                            alt="Avatar"
+                            class="img-fluid rounded-circle default-avatar"
+                          />
+                          <img
+                            *ngIf="profileImage"
+                            [src]="profileImage"
+                            alt="Foto de perfil"
+                            class="img-fluid rounded-circle"
+                          />
+
+                          <!-- Botón de cámara sobre la imagen -->
+                          <button
+                            type="button"
+                            class="btn-camera position-absolute"
+                            (click)="fileInput.click()"
+                          >
+                            <i class="bi bi-upload text-success"></i>
+                            <!-- Ícono de cámara -->
+                          </button>
+
+                          <!-- Input para seleccionar una imagen (invisible) -->
+                          <input
+                            type="file"
+                            #fileInput
+                            (change)="onFileChange($event)"
+                            class="d-none"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Campos del formulario -->
+                    <div class="col-md-12 col-lg-6 p-3">
+                      <p-floatlabel style="width: 100%">
+                        <input
+                          id="nombre_usuario"
+                          formControlName="nombre_usuario"
+                          pInputText
+                          pSize="small"
+                          style="width: 100%"
+                        />
+                        <label for="nombre_usuario">Usuario</label>
+                      </p-floatlabel>
+                      <!-- Mensaje de error para nombre_usuario -->
+                      <div
+                        *ngIf="profileForm.get('nombre_usuario')?.invalid"
+                        class="text-danger"
+                      >
+                        <small
+                          *ngIf="profileForm.get('nombre_usuario')?.errors?.['required']"
+                        >
+                          El campo usuario es requerido.
+                        </small>
+                        <small
+                          *ngIf="profileForm.get('nombre_usuario')?.errors?.['pattern']"
+                        >
+                          El nombre de usuario no es válido.
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 p-3">
+                      <p-floatlabel style="width: 100%">
+                        <input
+                          id="email"
+                          formControlName="email"
+                          pInputText
+                          pSize="small"
+                          style="width: 100%"
+                        />
+                        <label for="email">Correo para acceso</label>
+                      </p-floatlabel>
+                      <!-- Mensaje de error para Personal -->
+                      <div
+                        *ngIf="profileForm.get('email')?.invalid"
+                        class="text-danger"
+                      >
+                        <small
+                          *ngIf="profileForm.get('email')?.errors?.['required']"
+                        >
+                          El campo correo de respaldo es requerido.
+                        </small>
+                        <small
+                          *ngIf="profileForm.get('email')?.errors?.['pattern']"
+                        >
+                          El correo de respaldo no es válido.
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 p-3">
+                      <p-floatlabel style="width: 100%">
+                        <input
+                          id="nombre"
+                          formControlName="nombre"
+                          pInputText
+                          pSize="small"
+                          style="width: 100%"
+                        />
+                        <label for="nombre">Nombre</label>
+                      </p-floatlabel>
+                      <!-- Mensaje de error para nombre -->
+                      <div
+                        *ngIf="profileForm.get('nombre')?.invalid"
+                        class="text-danger"
+                      >
+                        <small
+                          *ngIf="profileForm.get('nombre')?.errors?.['required']"
+                        >
+                          El campo nombre es requerido.
+                        </small>
+                        <small
+                          *ngIf="profileForm.get('nombre')?.errors?.['pattern']"
+                        >
+                          El nombre no es válido.
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 p-3">
+                      <p-floatlabel style="width: 100%">
+                        <input
+                          id="apellido_paterno"
+                          formControlName="apellido_paterno"
+                          pInputText
+                          pSize="small"
+                          style="width: 100%"
+                        />
+                        <label for="apellido_paterno">Apellido Paterno</label>
+                      </p-floatlabel>
+                      <!-- Mensaje de error para apellido_paterno -->
+                      <div
+                        *ngIf="profileForm.get('apellido_paterno')?.invalid"
+                        class="text-danger"
+                      >
+                        <small
+                          *ngIf="profileForm.get('apellido_paterno')?.errors?.['required']"
+                        >
+                          El campo apellido paterno es requerido.
+                        </small>
+                        <small
+                          *ngIf="profileForm.get('apellido_paterno')?.errors?.['pattern']"
+                        >
+                          El apellido paterno no es válido.
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 p-3">
+                      <p-floatlabel style="width: 100%">
+                        <input
+                          id="apellido_materno"
+                          formControlName="apellido_materno"
+                          pInputText
+                          pSize="small"
+                          style="width: 100%"
+                        />
+                        <label for="apellido_materno">Apellido Materno</label>
+                      </p-floatlabel>
+                      <!-- Mensaje de error para apellido_materno -->
+                      <div
+                        *ngIf="profileForm.get('apellido_materno')?.invalid"
+                        class="text-danger"
+                      >
+                        <small
+                          *ngIf="profileForm.get('apellido_materno')?.errors?.['required']"
+                        >
+                          El campo apellido materno es requerido.
+                        </small>
+                        <small
+                          *ngIf="profileForm.get('apellido_materno')?.errors?.['pattern']"
+                        >
+                          El apellido materno no es válido.
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 col-lg-8">
+              <div class="col-md-12 row">
+                <div class="col-12">
+                  <h3>Datos personales</h3>
+                  <hr style="width: 60%" />
+                </div>
+
+                <div class="col-md-12 col-lg-6 p-3">
+                  <p-floatlabel style="width: 100%">
+                    <input
+                      id="email_respaldo"
+                      formControlName="email_respaldo"
+                      pInputText
+                      pSize="small"
+                      style="width: 100%"
+                    />
+                    <label for="email_respaldo">Correo de respaldo</label>
+                  </p-floatlabel>
+                  <!-- Mensaje de error para Personal -->
+                  <div
+                    *ngIf="profileForm.get('email_respaldo')?.invalid"
+                    class="text-danger"
+                  >
+                    <small
+                      *ngIf="profileForm.get('email_respaldo')?.errors?.['required']"
+                    >
+                      El campo correo de respaldo es requerido.
+                    </small>
+                    <small
+                      *ngIf="profileForm.get('email_respaldo')?.errors?.['pattern']"
+                    >
+                      El correo de respaldo no es válido.
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-md-12 col-lg-6 p-3">
+                  <p-floatlabel style="width: 100%">
+                    <input
+                      id="email_institucional"
+                      formControlName="email_institucional"
+                      pInputText
+                      pSize="small"
+                      style="width: 100%"
+                    />
+                    <label for="email_institucional"
+                      >Correo institucional</label
+                    >
+                  </p-floatlabel>
+                  <!-- Mensaje de error para Personal -->
+                  <div
+                    *ngIf="profileForm.get('email_institucional')?.invalid"
+                    class="text-danger"
+                  >
+                    <small
+                      *ngIf="profileForm.get('email_institucional')?.errors?.['required']"
+                    >
+                      El campo correo institucional es requerido.
+                    </small>
+                    <small
+                      *ngIf="profileForm.get('email_institucional')?.errors?.['pattern']"
+                    >
+                      El correo institucional no es válido.
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-md-12 col-lg-4 p-3">
+                  <p-floatlabel style="width: 100%">
+                    <input
+                      id="telefono_personal"
+                      formControlName="telefono_personal"
+                      pInputText
+                      pSize="small"
+                      style="width: 100%"
+                    />
+                    <label for="telefono_personal">Telefono personal</label>
+                  </p-floatlabel>
+                  <!-- Mensaje de error para Personal -->
+                  <div
+                    *ngIf="profileForm.get('telefono_personal')?.invalid"
+                    class="text-danger"
+                  >
+                    <small
+                      *ngIf="profileForm.get('telefono_personal')?.errors?.['required']"
+                    >
+                      El campo teléfono personal es requerido.
+                    </small>
+                    <small
+                      *ngIf="profileForm.get('telefono_personal')?.errors?.['pattern']"
+                    >
+                      El teléfono personal no es válido.
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-md-12 col-lg-4 p-3">
+                  <p-floatlabel style="width: 100%">
+                    <input
+                      id="telefono_casa"
+                      formControlName="telefono_casa"
+                      pInputText
+                      pSize="small"
+                      style="width: 100%"
+                    />
+                    <label for="telefono_casa">Telefono de casa</label>
+                  </p-floatlabel>
+                  <!-- Mensaje de error para Casa -->
+                  <div
+                    *ngIf="profileForm.get('telefono_casa')?.invalid"
+                    class="text-danger"
+                  >
+                    <small
+                      *ngIf="profileForm.get('telefono_casa')?.errors?.['pattern']"
+                    >
+                      El teléfono de casa no es válido.
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-md-12 col-lg-4 p-3">
+                  <p-floatlabel style="width: 100%">
+                    <input
+                      id="telefono_trabajo"
+                      formControlName="telefono_trabajo"
+                      pInputText
+                      pSize="small"
+                      style="width: 100%"
+                    />
+                    <label for="telefono_trabajo">Telefono de oficina</label>
+                  </p-floatlabel>
+                  <!-- Mensaje de error para Oficina -->
+                  <div
+                    *ngIf="profileForm.get('telefono_trabajo')?.invalid"
+                    class="text-danger"
+                  >
+                    <small
+                      *ngIf="profileForm.get('telefono_trabajo')?.errors?.['pattern']"
+                    >
+                      El teléfono de oficina no es válido.
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-md-12 col-lg-4 p-3">
+                  <p-floatlabel style="width: 100%">
+                    <input
+                      id="fechaNacimiento"
+                      formControlName="fechaNacimiento"
+                      pInputText
+                      pSize="small"
+                      [disabled]="true"
+                      style="width: 100%"
+                    />
+                    <label for="fechaNacimiento">Fecha de nacimiento</label>
+                  </p-floatlabel>
+                </div>
+
+                <div class="col-md-12 col-lg-4 p-3">
+                  <p-floatlabel style="width: 100%">
+                    <input
+                      id="genero"
+                      formControlName="genero"
+                      pInputText
+                      pSize="small"
+                      [disabled]="true"
+                      style="width: 100%"
+                    />
+                    <label for="genero">Genero</label>
+                  </p-floatlabel>
+                </div>
+
+                <div class="col-md-12 col-lg-4 p-3">
+                  <p-floatlabel style="width: 100%">
+                    <input
+                      id="curp"
+                      formControlName="curp"
+                      pInputText
+                      pSize="small"
+                      style="width: 100%"
+                    />
+                    <label for="curp">CURP</label>
+                  </p-floatlabel>
+                  <!-- Mensaje de error para curp -->
+                  <div
+                    *ngIf="profileForm.get('curp')?.invalid"
+                    class="text-danger"
+                  >
+                    <small
+                      *ngIf="profileForm.get('curp')?.errors?.['required']"
+                    >
+                      El campo CURP es requerido.
+                    </small>
+                    <small *ngIf="profileForm.get('curp')?.errors?.['pattern']">
+                      El CURP no es válido.
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-md-12 col-lg-4 p-3">
+                  <p-floatlabel style="width: 100%">
+                    <input
+                      id="rfc"
+                      formControlName="rfc"
+                      pInputText
+                      pSize="small"
+                      style="width: 100%"
+                    />
+                    <label for="rfc">RFC</label>
+                  </p-floatlabel>
+                  <!-- Mensaje de error para rfc -->
+                  <div
+                    *ngIf="profileForm.get('rfc')?.invalid"
+                    class="text-danger"
+                  >
+                    <small *ngIf="profileForm.get('rfc')?.errors?.['required']">
+                      El campo RFC es requerido.
+                    </small>
+                    <small *ngIf="profileForm.get('rfc')?.errors?.['pattern']">
+                      El RFC no es válido.
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="col-12 pt-4">
+                  <h3>Datos del domicilio</h3>
+                  <button class="btn btn-primary py-0" (click)="addDomicilio()">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                  <hr style="width: 60%" />
+                </div>
+
+                <div formArrayName="domicilios">
+                  <div
+                    ngbAccordion
+                    *ngFor="let domicilio of domicilios.controls; let i = index"
+                    [formGroupName]="i"
+                    class="domicilio pt-3"
+                  >
+                    <div ngbAccordionItem>
+                      <h2 ngbAccordionHeader>
+                        <button ngbAccordionButton>
+                          <h5>Domicilio {{ i + 1 }}</h5>
+                          <!-- Botón de eliminar domicilio con ícono de trash -->
+                          <i
+                            class="py-0 bi bi-trash text-danger"
+                            (click)="removeDomicilio(i)"
+                            *ngIf="domicilios.length > 1"
+                          ></i>
+                        </button>
+                      </h2>
+                      <div ngbAccordionCollapse>
+                        <div ngbAccordionBody>
+                          <div class="form-group">
+                            <div class="col-12">
+                              <div class="col-12 row">
+                                <div class="col-md-12 col-lg-6 p-3">
+                                  <p-floatlabel style="width: 100%">
+                                    <input
+                                      id="calle"
+                                      formControlName="calle"
+                                      pInputText
+                                      pSize="small"
+                                      style="width: 100%"
+                                    />
+                                    <label for="calle">Calle</label>
+                                  </p-floatlabel>
+                                  <!-- Mensaje de error para calle -->
+                                  <div
+                                    *ngIf="domicilio.get('calle')?.invalid"
+                                    class="text-danger"
+                                  >
+                                    <small
+                                      *ngIf="domicilio.get('calle')?.errors?.['required']"
+                                    >
+                                      El campo calle es requerido.
+                                    </small>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 p-3">
+                                  <p-floatlabel style="width: 100%">
+                                    <input
+                                      id="codigo_postal"
+                                      formControlName="codigo_postal"
+                                      pInputText
+                                      pSize="small"
+                                      style="width: 100%"
+                                    />
+                                    <label for="codigo_postal"
+                                      >Codigo postal</label
+                                    >
+                                  </p-floatlabel>
+                                  <!-- Mensaje de error para codigo_postal -->
+                                  <div
+                                    *ngIf="
+                                      domicilio.get('codigo_postal')?.invalid
+                                    "
+                                    class="text-danger"
+                                  >
+                                    <small
+                                      *ngIf="domicilio.get('codigo_postal')?.errors?.['required']"
+                                    >
+                                      El campo código postal es requerido.
+                                    </small>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 p-3">
+                                  <p-floatlabel style="width: 100%">
+                                    <input
+                                      id="colonia"
+                                      formControlName="colonia"
+                                      pInputText
+                                      pSize="small"
+                                      style="width: 100%"
+                                    />
+                                    <label for="colonia">Colonia</label>
+                                  </p-floatlabel>
+                                  <!-- Mensaje de error para colonia -->
+                                  <div
+                                    *ngIf="domicilio.get('colonia')?.invalid"
+                                    class="text-danger"
+                                  >
+                                    <small
+                                      *ngIf="domicilio.get('colonia')?.errors?.['required']"
+                                    >
+                                      El campo colonia es requerido.
+                                    </small>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 p-3">
+                                  <p-floatlabel style="width: 100%">
+                                    <input
+                                      id="numero_externo"
+                                      formControlName="numero_externo"
+                                      pInputText
+                                      pSize="small"
+                                      style="width: 100%"
+                                    />
+                                    <label for="numero_externo"
+                                      >Número externo</label
+                                    >
+                                  </p-floatlabel>
+                                  <!-- Mensaje de error para numero_externo -->
+                                  <div
+                                    *ngIf="
+                                      domicilio.get('numero_externo')?.invalid
+                                    "
+                                    class="text-danger"
+                                  >
+                                    <small
+                                      *ngIf="domicilio.get('numero_externo')?.errors?.['required']"
+                                    >
+                                      El campo número externo es requerido.
+                                    </small>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-6 p-3">
+                                  <p-floatlabel style="width: 100%">
+                                    <input
+                                      id="numero_interno"
+                                      formControlName="numero_interno"
+                                      pInputText
+                                      pSize="small"
+                                      style="width: 100%"
+                                    />
+                                    <label for="numero_interno"
+                                      >Número interno</label
+                                    >
+                                  </p-floatlabel>
+                                  <!-- Mensaje de error para numero_interno -->
+                                  <div
+                                    *ngIf="
+                                      domicilio.get('numero_interno')?.invalid
+                                    "
+                                    class="text-danger"
+                                  >
+                                    <small
+                                      *ngIf="domicilio.get('numero_interno')?.errors?.['required']"
+                                    >
+                                      El campo número interno es requerido.
+                                    </small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 text-center pt-5">
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </p-tabpanel>
+  </p-tabpanels>
+</p-tabs>
+
+<upload-files-component *ngIf="tab == '1'"></upload-files-component>

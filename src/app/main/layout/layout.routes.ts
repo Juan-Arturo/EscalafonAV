@@ -10,6 +10,8 @@ import { RegisterFormComponent } from './elements/register-form/register-form.co
 import { QuickAcessComponent } from './pages/quick-acess/quick-acess.component';
 import { CoreAuthGuard } from '../../core/guards/core.auth.guard';
 import { CoreLoginGuard } from '../../core/guards/core.login.guard';
+import { UploadFilesComponent } from './upload-files/upload-files.component';
+
 
 
 
@@ -29,6 +31,7 @@ export const layoutRoutes: Routes = [
       { path: "teammates", component: TeammatesComponent,canActivate: [CoreLoginGuard]  },
       { path: "contact", component: ContactComponent,canActivate: [CoreLoginGuard] },
       { path: "form", component: RegisterFormComponent, canActivate: [CoreAuthGuard] }, //CoreLoginGuard protege la ruta de usuarios NO autenticados
+      { path: "upload", component: UploadFilesComponent},
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
   },

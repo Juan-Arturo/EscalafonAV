@@ -1,0 +1,78 @@
+<!-- Contenedor de los botones de acción agrupados -->
+<div class="btn-group w-100" role="group" aria-label="Action buttons">
+  <!-- Botón para editar, con ícono de lápiz y color primario -->
+  <button
+    *ngIf="params.onEdit"
+    (click)="onEditClick()"
+    type="button"
+    class="btn btn m-2"
+  >
+    <i class="bi bi-pencil-fill text-primary"></i>
+    <!-- Ícono de lápiz con color primario (azul) -->
+  </button>
+
+  <!-- Botón para eliminar, con ícono de papelera y color de alerta (rojo) -->
+  <button
+    *ngIf="params.onDelete"
+    (click)="onDeleteClick()"
+    type="button"
+    class="btn bt m-2"
+  >
+    <i class="bi bi-trash-fill text-danger"></i>
+    <!-- Ícono de papelera con color peligro (rojo) -->
+  </button>
+
+  <!-- Botón para ver, con ícono de ojo y color secundario -->
+  <button
+    *ngIf="params.onView"
+    (click)="onViewClick()"
+    type="button"
+    class="btn m-2"
+  >
+    <i class="bi bi-eye-fill text-secondary"></i>
+    <!-- Ícono de ojo con color secundario (gris) -->
+  </button>
+
+  <!-- p-fileUpload: Diseño mejorado -->
+  <p-fileUpload
+    class="btn btn-sm py-2 px-3"
+    *ngIf="params.onUploadFile"
+    mode="basic"
+    chooseIcon="bi bi-cloud-arrow-up-fill"
+    [chooseLabel]="
+      params.data.documentInfo.fecha_emision
+        ? ' Actualizar archivo'
+        : 'Seleccionar archivo'
+    "
+    [auto]="true"
+    (onSelect)="uploadFile($event)"
+    [style]="{
+      width: '100%',
+      maxWidth: '250px',
+      height: '30px',
+      borderRadius: '10px',
+      color: 'white',
+      backgroundColor: '#80b13e',
+    }"
+    (onClick)="
+      params.data.documentInfo.fecha_emision ? null : uploadFile($event)
+    "
+  >
+  </p-fileUpload>
+
+  <!-- Botón para ver el documento -->
+  <button
+    *ngIf="params.onSeeDocument && params.data.documentInfo.fecha_emision"
+    (click)="onSeeDocumentClick()"
+    type="button"
+    class="btn btn-outline-danger m-2 py-0"
+  >
+    <i
+      class="bi bi-file-earmark-text"
+      style="font-size: 20px; margin-right: 5px"
+    ></i>
+    <span style="font-weight: bold">Ver documento</span>
+  </button>
+
+  <!-- Botón para subir archivo usando PrimeNG -->
+</div>

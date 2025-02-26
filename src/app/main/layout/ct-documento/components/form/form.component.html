@@ -1,0 +1,198 @@
+<div class="container py-5">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <!-- Nombre del Documento Input Group -->
+      <div class="mb-4 col-sm-12 col-lg-6">
+        <p-inputgroup>
+          <p-floatlabel>
+            <input
+              pInputText
+              formControlName="nombre_documento"
+              id="nombre_documento"
+              [ngClass]="{
+                'is-invalid':
+                  form.get('nombre_documento')?.invalid &&
+                  form.get('nombre_documento')?.touched
+              }"
+              class="form-control"
+            />
+            <label for="nombre_documento">Nombre del documento</label>
+          </p-floatlabel>
+        </p-inputgroup>
+        <div
+          *ngIf="
+            form.get('nombre_documento')?.invalid &&
+            form.get('nombre_documento')?.touched
+          "
+          class="invalid-feedback d-block"
+        >
+          Nombre del documento es requerido
+        </div>
+      </div>
+
+      <div class="mb-4 col-sm-12 col-lg-6">
+        <p-inputgroup>
+          <p-floatlabel>
+            <p-inputnumber
+              formControlName="tamanio"
+              id="tamanio"
+              [ngClass]="{
+                'is-invalid':
+                  form.get('tamanio')?.invalid && form.get('tamanio')?.touched
+              }"
+              class="form-control"
+            />
+            <label for="tamanio">Tamaño en kb</label>
+          </p-floatlabel>
+        </p-inputgroup>
+        <div
+          *ngIf="form.get('tamanio')?.invalid && form.get('tamanio')?.touched"
+          class="invalid-feedback d-block"
+        >
+          Tamaño es requerido
+        </div>
+      </div>
+
+      <!-- Unidad de Periodo Dropdown (Select Component) -->
+      <div class="mb-4 col-sm-12 col-lg-12">
+        <label for="tipo_documento" class="font-bold mb-2 block"
+          >Tipo de documento</label
+        >
+        <p-inputgroup>
+          <p-select
+            formControlName="tipo_documento"
+            id="tipo_documento"
+            [options]="tipoOptions"
+            optionLabel="label"
+            optionValue="value"
+            [ngClass]="{
+              'is-invalid':
+                form.get('tipo_documento')?.invalid &&
+                form.get('tipo_documento')?.touched
+            }"
+            class="form-control w-100"
+          ></p-select>
+        </p-inputgroup>
+        <div
+          *ngIf="
+            form.get('tipo_documento')?.invalid &&
+            form.get('tipo_documento')?.touched
+          "
+          class="invalid-feedback d-block"
+        >
+          Tipo de documento es obligatorio.
+        </div>
+      </div>
+
+      <!-- Unidad de Periodo Dropdown (Select Component) -->
+      <div class="mb-4 col-sm-12 col-lg-6">
+        <label for="unidad_periodo" class="font-bold mb-2 block"
+          >Unidad de periodo</label
+        >
+        <p-inputgroup>
+          <p-select
+            formControlName="unidad_periodo"
+            id="unidad_periodo"
+            [options]="estadoOptions"
+            optionLabel="label"
+            optionValue="value"
+            [ngClass]="{
+              'is-invalid':
+                form.get('unidad_periodo')?.invalid &&
+                form.get('unidad_periodo')?.touched
+            }"
+            class="form-control w-100"
+          ></p-select>
+        </p-inputgroup>
+        <div
+          *ngIf="
+            form.get('unidad_periodo')?.invalid &&
+            form.get('unidad_periodo')?.touched
+          "
+          class="invalid-feedback d-block"
+        >
+          Unidad de periodo es obligatorio.
+        </div>
+      </div>
+
+      <div class="mb-4 col-sm-12 col-lg-6">
+        <p-inputgroup>
+          <p-floatlabel>
+            <p-inputnumber
+              formControlName="vigencia"
+              id="vigencia"
+              [ngClass]="{
+                'is-invalid':
+                  form.get('vigencia')?.invalid && form.get('vigencia')?.touched
+              }"
+              class="form-control"
+            />
+            <label for="vigencia">Vigencia</label>
+          </p-floatlabel>
+        </p-inputgroup>
+        <div
+          *ngIf="form.get('vigencia')?.invalid && form.get('vigencia')?.touched"
+          class="invalid-feedback d-block"
+        >
+          Vigencia es requerido
+        </div>
+      </div>
+      <!-- Estado Publica Switch -->
+      <div class="mb-4 col-sm-12 col-lg-6">
+        <label for="estado_publica" class="font-bold mb-2 block"
+          >Estado publica</label
+        >
+        <p-inputgroup>
+          <p-toggleswitch
+            formControlName="estado_publica"
+            id="estado_publica"
+            [ngClass]="{
+              'is-invalid':
+                form.get('estado_publica')?.invalid &&
+                form.get('estado_publica')?.touched
+            }"
+          ></p-toggleswitch>
+        </p-inputgroup>
+        <div
+          *ngIf="
+            form.get('estado_publica')?.invalid &&
+            form.get('estado_publica')?.touched
+          "
+          class="invalid-feedback d-block"
+        >
+          Estado publica es obligatorio.
+        </div>
+      </div>
+      <!-- Action Buttons -->
+      <div class="d-flex justify-content-between mt-4">
+        <button
+          type="button"
+          class="btn btn-outline-secondary w-25 fw-bold"
+          (click)="close()"
+        >
+          Cerrar
+        </button>
+        <div *ngIf="data?.mode !== 'view'" class="w-25">
+          <button
+            type="submit"
+            class="btn btn-primary w-100 fw-bold"
+            [disabled]="form.invalid && data?.mode !== 'view'"
+          >
+            {{
+              data?.mode === "add"
+                ? "Agregar"
+                : data?.mode === "edit"
+                ? "Guardar Cambios"
+                : "Ver"
+            }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Display Form Data for Debugging -->
+<!-- <div class="mt-4">
+  <pre>{{ form.value | json }}</pre>
+</div> -->

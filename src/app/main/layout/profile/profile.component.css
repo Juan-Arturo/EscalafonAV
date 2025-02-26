@@ -1,0 +1,49 @@
+.profile-photo-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.profile-photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%; /* Hace la imagen circular */
+  border: 5px solid #ffffff; /* Borde de la imagen */
+}
+
+.default-avatar {
+  background-color: #ffffff;
+  border: 3px solid #ffffff;
+}
+
+.btn-camera {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btn-camera:hover {
+  background-color: #ffffff;
+}
+
+/* Hacer que el input de archivo sea invisible */
+input[type="file"] {
+  display: none;
+}
+
+/* Estilo para el ícono de cámara (si usas Bootstrap Icons o Font Awesome) */
+.bi-camera-fill {
+  font-size: 18px;
+}
+/* Estilo para el acordeón */
+.accordion-button {
+  height: 30px;
+}
