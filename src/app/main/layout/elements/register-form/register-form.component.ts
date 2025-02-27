@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { TabService } from '../../../../core/services/tab.service';
 import {  FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { UploadFilesComponent } from '../upload-files/upload-files.component';
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
+  imports: [UploadFilesComponent],
   styleUrl: './register-form.component.css'
 })
 export class RegisterFormComponent implements OnInit {
     dataForm!: FormGroup;
-
-  constructor(public tabService: TabService,private fb: FormBuilder,) {}
+    
+  constructor(public tabService: TabService,private fb: FormBuilder) {}
  
 
 
