@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 import { RouterOutlet } from '@angular/router';
 
 
@@ -10,4 +12,17 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'ESCALAFON';
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      // Aquí inicializamos los componentes de Bootstrap que necesitan 'document'
+      import('bootstrap').then((bootstrap) => {
+        // Inicializar los componentes de Bootstrap que necesites
+        // Por ejemplo:
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+      });
+    }
+  }
 }

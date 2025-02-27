@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { CoreAlertService } from '../../../core/services/core.alert.service';
-import { CoreLoadingService } from '../../../core/services/core.loading.service';
+
+
 import { Documento } from '../interfaces/interfaces';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { handleError } from '../../../core/helpers/handle';
+import { environment } from '../../../../../environments/environment';
+import { CoreAlertService } from '../../../../core/services/core.alert.service';
+import { CoreLoadingService } from '../../../../core/services/core.loading.service';
+import { handleError } from '../../../../core/helpers/handle';
+
+
 
 @Injectable({
   providedIn: 'root',
