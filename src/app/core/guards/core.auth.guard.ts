@@ -29,7 +29,7 @@ export class CoreAuthGuard implements CanActivate {
       return true; // Permite la activación de la ruta
     } else {
       // Si el usuario no está autenticado, lo redirige a la página de login
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['/auth/loginMain']);
       return false; // Bloquea el acceso a la ruta
     }
   }

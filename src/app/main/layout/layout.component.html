@@ -1,4 +1,11 @@
-<app-navbar></app-navbar>
-<app-navbar-log></app-navbar-log>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<ng-container *ngIf="isAuthenticated; else notAuthenticated">
+    <app-navbar-log></app-navbar-log>
+  </ng-container>
+  
+  <ng-template #notAuthenticated>
+    <app-navbar></app-navbar>
+  </ng-template>
+  
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+  
