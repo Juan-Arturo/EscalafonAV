@@ -49,113 +49,116 @@
 .custom-table th:nth-child(6) { width: 13%; } /* Acciones */
 .custom-table th:nth-child(7) { width: 13%; } /* Documento */
 
-/* Botón de subir archivo más compacto */
+/* Contenedor para el botón de subir archivo */
+.file-upload-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Botón de seleccionar archivo */
 .btn-upload {
-  background-color: #fff;
-  color: #344767;
-  border: 1px solid #e2e8f0;
-  padding: 8px 12px;
+  background: transparent;
+  color: #422b7c;
+  border: 1px solid #422b7c;
+  padding: 6px 12px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.2s;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.3px;
 }
 
 .btn-upload:hover {
-  background-color: #f8f9fa;
-  border-color: #cbd5e0;
-  transform: translateY(-1px);
+  background: #f8f5ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(66, 43, 124, 0.1);
 }
 
 .btn-upload i {
   font-size: 14px;
-  color: #422b7c;
+  transition: transform 0.3s ease;
 }
 
-/* Botón ver documento más compacto */
+.btn-upload:hover i {
+  transform: translateY(-2px);
+}
+
+/* Efecto de subrayado */
+.btn-upload::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: #422b7c;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.btn-upload:hover::after {
+  width: 90%;
+}
+
+/* Botón ver documento */
 .btn-ver-documento {
-  background-color: #422b7c;
-  color: white;
-  border: none;
-  padding: 8px 12px;
+  background: transparent;
+  color: #422b7c;
+  border: 1px solid #422b7c;
+  padding: 6px 12px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.2s;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.3px;
 }
 
 .btn-ver-documento:hover {
-  background-color: #2d1d54;
-  transform: translateY(-1px);
+  background: #422b7c;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(66, 43, 124, 0.1);
 }
 
 .btn-ver-documento i {
   font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.btn-ver-documento:hover i {
+  transform: scale(1.1);
 }
 
 /* Estado sin archivo */
 .no-file {
   color: #a0aec0;
   font-size: 12px;
-  padding: 6px 10px;
-  background-color: #f8f9fa;
-  border-radius: 4px;
-  display: inline-block;
-}
-
-/* Paginación más compacta */
-.pagination-container {
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid #edf2f7;
-}
-
-.pagination-controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  justify-content: flex-end;
-}
-
-.btn-pagination {
-  background-color: #f8f9fa;
-  color: #344767;
-  border: 1px solid #e2e8f0;
   padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 12px;
-  transition: all 0.2s;
-}
-
-.btn-pagination:hover:not(:disabled) {
-  background-color: #422b7c;
-  color: white;
-  border-color: #422b7c;
-}
-
-.btn-pagination:disabled {
   background-color: #f8f9fa;
-  color: #cbd5e0;
-  border-color: #e2e8f0;
-  cursor: not-allowed;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Inter', sans-serif;
 }
 
-.pagination-controls span {
+.no-file i {
   font-size: 12px;
-  color: #4a5568;
-  font-weight: 500;
-}
-
-/* Filas vacías más discretas */
-.empty-row td {
-  height: 52px;
-  background-color: #fbfbfb;
+  opacity: 0.7;
 }
 
 /* Input file oculto */
@@ -163,6 +166,176 @@
   position: absolute;
   left: -9999px;
   opacity: 0;
+}
+
+/* Animación para los botones */
+@keyframes buttonPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+.btn-upload:active,
+.btn-ver-documento:active {
+  animation: buttonPop 0.2s ease;
+}
+
+/* Contenedor de paginación */
+.pagination-container {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  position: relative;
+}
+
+/* Contenedor de controles con línea decorativa */
+.pagination-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 40px;
+  position: relative;
+}
+
+/* Líneas decorativas */
+.pagination-controls::before,
+.pagination-controls::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(66, 43, 124, 0.2) 50%,
+    transparent
+  );
+}
+
+.pagination-controls::before {
+  left: -120px;
+}
+
+.pagination-controls::after {
+  right: -120px;
+}
+
+/* Botones de paginación */
+.btn-pagination {
+  background: transparent;
+  border: none;
+  color: #422b7c;
+  font-size: 15px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Efecto de subrayado en hover */
+.btn-pagination::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #422b7c;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.btn-pagination:not(:disabled):hover::after {
+  width: 80%;
+}
+
+/* Efecto hover */
+.btn-pagination:not(:disabled):hover {
+  transform: translateY(-2px);
+  color: #2d1d54;
+}
+
+/* Efecto active */
+.btn-pagination:not(:disabled):active {
+  transform: translateY(0);
+}
+
+/* Estilo para botón deshabilitado */
+.btn-pagination:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Iconos en los botones */
+.btn-pagination i {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  margin: 0 8px;
+}
+
+/* Contador de páginas */
+.pagination-controls span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2d1d54;
+  padding: 8px 16px;
+  min-width: 100px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f5ff;
+  border-radius: 6px;
+}
+
+/* Animaciones para los iconos */
+.btn-pagination:hover:not(:disabled) i.fa-chevron-left {
+  transform: translateX(-4px);
+}
+
+.btn-pagination:hover:not(:disabled) i.fa-chevron-right {
+  transform: translateX(4px);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .pagination-controls {
+    gap: 16px;
+    padding: 0 20px;
+  }
+
+  .pagination-controls::before,
+  .pagination-controls::after {
+    width: 50px;
+  }
+
+  .pagination-controls::before {
+    left: -60px;
+  }
+
+  .pagination-controls::after {
+    right: -60px;
+  }
+
+  .btn-pagination {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .pagination-controls span {
+    font-size: 14px;
+    padding: 6px 12px;
+    min-width: 80px;
+  }
+}
+
+/* Filas vacías más discretas */
+.empty-row td {
+  height: 52px;
+  background-color: #fbfbfb;
 }
 
 /* Responsive */
