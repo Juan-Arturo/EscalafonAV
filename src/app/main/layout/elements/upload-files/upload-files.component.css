@@ -1,0 +1,214 @@
+.admin-table-container {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 20px;
+  overflow-x: auto;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Roboto', sans-serif;
+}
+
+.custom-table th {
+  background-color: #e9ddff;
+  color: #422b7c;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+}
+
+.custom-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.custom-table tr:hover {
+  background-color: #fdf7ff;
+}
+
+.actions-column {
+  text-align: center;
+}
+
+.file-upload-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.file-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+}
+
+.btn-upload {
+  background-color: #422b7c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: inline-block;
+}
+
+.btn-upload:hover {
+  background-color: #2d1d54;
+}
+
+.no-file {
+  color: #666;
+  font-style: italic;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-pagination {
+  background-color: #422b7c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-pagination:hover {
+  background-color: #2d1d54;
+}
+
+.btn-pagination:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/*estilos para la tabla documentos*/
+
+.admin-table-container {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 20px;
+  overflow-x: auto;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Roboto', sans-serif;
+}
+
+.custom-table th {
+  background-color: #e9ddff;
+  color: #422b7c;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+}
+
+.custom-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.custom-table tr:hover {
+  background-color: #fdf7ff;
+}
+
+.actions-column {
+  text-align: center;
+}
+
+.file-upload-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.file-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+}
+
+.btn-upload {
+  background-color: #422b7c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: inline-block;
+}
+
+.btn-upload:hover {
+  background-color: #2d1d54;
+}
+
+.no-file {
+  color: #666;
+  font-style: italic;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-pagination {
+  background-color: #422b7c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-pagination:hover {
+  background-color: #2d1d54;
+}
+
+.btn-pagination:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.empty-row td {
+  height: 53px; /* Ajusta este valor según la altura de tus filas normales */
+  background-color: #f9f9f9;
+}

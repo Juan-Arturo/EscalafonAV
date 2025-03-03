@@ -5,6 +5,7 @@
         <th>Nombre del documento</th>
         <th>Vigencia</th>
         <th>Fecha de emisión</th>
+        <th>Fecha de vencimiento</th>
         <th>Días por vencer</th>
         <th>Acciones</th>
         <th>Documento</th>
@@ -13,9 +14,10 @@
     <tbody>
       <tr *ngFor="let doc of paginatedData">
         <td>{{doc.nombre_documento}}</td>
-        <td>{{doc.unidad_periodo}} meses</td>
-        <td>{{doc.documentInfo?.fecha_emision || 'No disponible'}}</td>
-        <td>120</td>
+        <td>{{formatVigencia(doc)}}</td>
+        <td>{{formatFechaEmision(doc)}}</td>
+        <td>{{formatFechaVencimiento(doc)}}</td>
+        <td>{{calcularDiasRestantes(doc)}}</td>
         <td class="actions-column">
           <div class="file-upload-wrapper">
             <input type="file" class="file-input" id="fileInput_{{doc.id_documento}}" accept=".pdf,.doc,.docx">
@@ -25,9 +27,14 @@
           </div>
         </td>
         <td>
-          <span *ngIf="doc.ruta">{{doc.ruta.split('/').pop()}}</span>
-          <span *ngIf="!doc.ruta" class="no-file">Sin archivo</span>
+          <button (click)="seeDocument(doc)" *ngIf="doc.documentInfo?.ruta">
+            Ver documento
+          </button>
+          <span *ngIf="!doc.documentInfo?.ruta" class="no-file">Sin archivo</span>
         </td>
+      </tr>
+      <tr *ngFor="let empty of getEmptyRows()" class="empty-row">
+        <td colspan="7"></td>
       </tr>
     </tbody>
   </table>
@@ -45,111 +52,7 @@
   </div>
 </div>
 
-<style>
-  .admin-table-container {
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin: 20px;
-    overflow-x: auto;
-  }
 
-  .custom-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  .custom-table th {
-    background-color: #e9ddff;
-    color: #422b7c;
-    padding: 12px;
-    text-align: left;
-    font-weight: 600;
-    border-bottom: 2px solid #ddd;
-  }
-
-  .custom-table td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .custom-table tr:hover {
-    background-color: #fdf7ff;
-  }
-
-  .actions-column {
-    text-align: center;
-  }
-
-  .file-upload-wrapper {
-    position: relative;
-    display: inline-block;
-  }
-
-  .file-input {
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    width: 0.1px;
-    height: 0.1px;
-  }
-
-  .btn-upload {
-    background-color: #422b7c;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: inline-block;
-  }
-
-  .btn-upload:hover {
-    background-color: #2d1d54;
-  }
-
-  .no-file {
-    color: #666;
-    font-style: italic;
-  }
-
-  .pagination-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    padding: 10px;
-  }
-
-  .pagination-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .btn-pagination {
-    background-color: #422b7c;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  .btn-pagination:hover {
-    background-color: #2d1d54;
-  }
-
-  .btn-pagination:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-</style>
 
 
 

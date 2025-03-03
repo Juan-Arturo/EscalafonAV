@@ -2,10 +2,15 @@
 export interface Documento {
   id_documento: number;
   nombre_documento: string;
-  unidad_periodo: number;
+  unidad_periodo: string;
+  vigencia: number;
   tipo_documento: string;
   ruta: string;
-  documentInfo: any;
+  documentInfo: {
+    fecha_emision: string;
+    fecha_vencimiento: string;
+    ruta: string;
+  };
 }
 
 export interface ModalData {

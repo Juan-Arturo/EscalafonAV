@@ -16,13 +16,12 @@ import { CoreLoadingService } from '../../../../core/services/core.loading.servi
 import { RootState } from '../../../../store';
 import { SharedCustomModalComponent } from '../../../../shared/shared-custom-modal/shared-custom-modal.component';
 import { SharedActionsGridComponent } from '../../../../shared/shared-actions-grid/shared-actions-grid.component';
-import { FormsModule } from '@angular/forms';
 
 
 
 @Component({
   selector: 'upload-files-component',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule],
   templateUrl: './upload-files.component.html',
   styleUrl: './upload-files.component.css',
 })
@@ -36,8 +35,6 @@ export class UploadFilesComponent {
     rowHoverColor: '#fdf7ff',
     // rowHeight: 100,
   });
-  public paginationPageSize = 10;
-  public paginationPageSizeSelector: number[] | boolean = [10, 25, 50];
 
   public columnDefs: ColDef[] = [
     {
@@ -179,8 +176,8 @@ export class UploadFilesComponent {
       sortable: true,
       resizable: true,
     },
+    pagination: false,
     columnChooser: true,
-    // Habilita el selector de columnas para que el usuario pueda elegir qué columnas ver.
   };
 
   constructor(
@@ -228,7 +225,8 @@ export class UploadFilesComponent {
                 // Después de añadir los datos del documento, actualizamos rowData
                 // Sólo después de haber procesado todos los documentos podemos asignar rowData
                 if (allDocuments.length === data.documents.length) {
-                  this.rowData = [...allDocuments]; // Esto asegura que rowData tiene todos los documentos completos
+                  this.rowData = [...allDocuments];
+                  this.currentPage = 1; // Resetear a la primera página cuando se cargan nuevos datos
                   this.calculateTotalPages();
                 }
               },
@@ -276,19 +274,11 @@ export class UploadFilesComponent {
     }
   }
 
-  uploadFile(file: any, row: Documento): void {
-    this.uploadService
-      .uploadFile(
-        file,
-        row.id_documento,
-        this.dataUser.informacion_rupeet.datos_personales.id_informacion_rupeet,
-        row.tipo_documento,
-        row.nombre_documento
-      )
-      .subscribe(() => {
-        this.loadData(this.dataUser);
-      });
-
+  uploadFile(event: Event, doc: Documento): void {
+    const target = event.target as HTMLInputElement;
+    if (target && target.files && target.files[0]) {
+      this.uploadService.uploadFile(target.files[0], doc.id_documento, this.dataUser.informacion_rupeet.datos_personales.id_informacion_rupeet, doc.tipo_documento, doc.nombre_documento);
+    }
   }
 
   seeDocument(row: Documento): void {
@@ -299,13 +289,12 @@ export class UploadFilesComponent {
     });
   }
 
-
-  //paginacion 
-  public itemsPerPage: number = 5;
+  // Variables para la paginación personalizada
+  public itemsPerPage: number = 4; // Mantener 4 elementos por página
   public currentPage: number = 1;
   public totalPages: number = 1;
   
-  // Propiedad computada para obtener los elementos de la página actual
+  // Método para obtener los elementos de la página actual
   get paginatedData(): Documento[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
@@ -314,17 +303,85 @@ export class UploadFilesComponent {
 
   // Método para cambiar de página
   changePage(page: number): void {
-    this.currentPage = page;
-  }
-
-  // Método para cambiar items por página
-  onItemsPerPageChange(): void {
-    this.currentPage = 1;
-    this.calculateTotalPages();
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
   }
 
   // Calcular total de páginas
   private calculateTotalPages(): void {
-    this.totalPages = Math.ceil(this.rowData.length / this.itemsPerPage);
+    this.totalPages = Math.max(1, Math.ceil(this.rowData.length / this.itemsPerPage));
   }
+
+  // Método para obtener filas vacías cuando hay menos de 4 elementos
+  getEmptyRows(): number[] {
+    const currentPageItems = this.paginatedData.length;
+    const emptyRowsCount = this.itemsPerPage - currentPageItems;
+    return emptyRowsCount > 0 ? Array(emptyRowsCount).fill(0) : [];
+  }
+
+
+  //funciones 
+  formatVigencia(documento: Documento): string {
+    return documento.unidad_periodo == 'sin vigencia'
+      ? 'Sin vigencia'
+      : `${documento.vigencia} ${documento.unidad_periodo}`;
+  }
+
+  formatFechaEmision(documento: Documento): string {
+    if (!documento.documentInfo?.fecha_emision) {
+      return "Archivo no subido";
+    }
+    return documento.documentInfo.fecha_emision;
+  }
+
+  formatFechaVencimiento(documento: Documento): string {
+    if (!documento.documentInfo?.fecha_emision) {
+      return "Archivo no subido";
+    }
+    if (documento.unidad_periodo == 'sin vigencia') {
+      return 'Sin vigencia';
+    }
+    return documento.documentInfo.fecha_vencimiento;
+  }
+
+  calcularDiasRestantes(documento: Documento): string {
+    if (!documento.documentInfo?.fecha_emision) {
+      return "Archivo no subido";
+    }
+    if (documento.unidad_periodo == 'sin vigencia') {
+      return 'Sin vigencia';
+    }
+
+    const fechaVencimiento = new Date(documento.documentInfo.fecha_vencimiento);
+    const fechaActual = new Date();
+    const diferenciaMs = fechaVencimiento.getTime() - fechaActual.getTime();
+    const diferenciaDias = Math.floor(diferenciaMs / (1000 * 3600 * 24));
+
+    if (diferenciaDias < 0) {
+      return 'Vencido';
+    }
+
+    if (diferenciaDias === 1) {
+      return '1 día';
+    }
+    if (diferenciaDias < 30) {
+      return `${diferenciaDias} días`;
+    }
+
+    const diferenciaMeses = Math.floor(diferenciaDias / 30);
+    if (diferenciaMeses === 1) {
+      return '1 mes';
+    }
+    if (diferenciaMeses < 12) {
+      return `${diferenciaMeses} meses`;
+    }
+
+    const diferenciaAnios = Math.floor(diferenciaDias / 365);
+    if (diferenciaAnios === 1) {
+      return '1 año';
+    }
+    return `${diferenciaAnios} años`;
+  }
+  
 }
