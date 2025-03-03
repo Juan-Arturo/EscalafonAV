@@ -1,235 +1,214 @@
 .admin-table-container {
+  max-width: 1200px; /* Limitamos el ancho máximo */
+  margin: 20px auto; /* Centramos el contenedor */
   padding: 20px;
   background: white;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin: 20px;
-  overflow-x: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .custom-table {
   width: 100%;
-  border-collapse: collapse;
-  font-family: 'Roboto', sans-serif;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
 }
 
+/* Encabezados más compactos */
 .custom-table th {
-  background-color: #e9ddff;
-  color: #422b7c;
-  padding: 12px;
-  text-align: left;
+  background-color: #f8f9fa;
+  color: #344767;
+  padding: 12px 16px;
   font-weight: 600;
-  border-bottom: 2px solid #ddd;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #edf2f7;
 }
 
+/* Celdas más compactas */
 .custom-table td {
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+  padding: 12px 16px;
+  border-bottom: 1px solid #edf2f7;
+  color: #4a5568;
+  vertical-align: middle;
 }
 
-.custom-table tr:hover {
-  background-color: #fdf7ff;
+/* Hover suave en las filas */
+.custom-table tr:hover td {
+  background-color: #f8f9fa;
 }
 
-.actions-column {
-  text-align: center;
-}
+/* Columnas con ancho específico */
+.custom-table th:nth-child(1) { width: 20%; } /* Nombre documento */
+.custom-table th:nth-child(2) { width: 12%; } /* Vigencia */
+.custom-table th:nth-child(3) { width: 15%; } /* Fecha emisión */
+.custom-table th:nth-child(4) { width: 15%; } /* Fecha vencimiento */
+.custom-table th:nth-child(5) { width: 12%; } /* Días por vencer */
+.custom-table th:nth-child(6) { width: 13%; } /* Acciones */
+.custom-table th:nth-child(7) { width: 13%; } /* Documento */
 
-.file-upload-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.file-input {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  width: 0.1px;
-  height: 0.1px;
-}
-
+/* Botón de subir archivo más compacto */
 .btn-upload {
-  background-color: #422b7c;
-  color: white;
-  border: none;
-  padding: 8px 16px;
+  background-color: #fff;
+  color: #344767;
+  border: 1px solid #e2e8f0;
+  padding: 8px 12px;
   border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
 }
 
 .btn-upload:hover {
-  background-color: #2d1d54;
+  background-color: #f8f9fa;
+  border-color: #cbd5e0;
+  transform: translateY(-1px);
 }
 
-.no-file {
-  color: #666;
-  font-style: italic;
-}
-
-.pagination-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  padding: 10px;
-}
-
-.pagination-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-pagination {
-  background-color: #422b7c;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.btn-pagination:hover {
-  background-color: #2d1d54;
-}
-
-.btn-pagination:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-/*estilos para la tabla documentos*/
-
-.admin-table-container {
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin: 20px;
-  overflow-x: auto;
-}
-
-.custom-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: 'Roboto', sans-serif;
-}
-
-.custom-table th {
-  background-color: #e9ddff;
+.btn-upload i {
+  font-size: 14px;
   color: #422b7c;
-  padding: 12px;
-  text-align: left;
-  font-weight: 600;
-  border-bottom: 2px solid #ddd;
 }
 
-.custom-table td {
-  padding: 12px;
-  border-bottom: 1px solid #eee;
-}
-
-.custom-table tr:hover {
-  background-color: #fdf7ff;
-}
-
-.actions-column {
-  text-align: center;
-}
-
-.file-upload-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.file-input {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  width: 0.1px;
-  height: 0.1px;
-}
-
-.btn-upload {
-  background-color: #422b7c;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: inline-block;
-}
-
-.btn-upload:hover {
-  background-color: #2d1d54;
-}
-
-.no-file {
-  color: #666;
-  font-style: italic;
-}
-
-.pagination-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  padding: 10px;
-}
-
-.pagination-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.btn-pagination {
-  background-color: #422b7c;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.btn-pagination:hover {
-  background-color: #2d1d54;
-}
-
-.btn-pagination:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.empty-row td {
-  height: 53px; /* Ajusta este valor según la altura de tus filas normales */
-  background-color: #f9f9f9;
-}
-
+/* Botón ver documento más compacto */
 .btn-ver-documento {
   background-color: #422b7c;
   color: white;
   border: none;
-  padding: 8px 16px;
+  padding: 8px 12px;
   border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 12px;
+  font-weight: 500;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  transition: all 0.2s;
 }
 
 .btn-ver-documento:hover {
   background-color: #2d1d54;
+  transform: translateY(-1px);
 }
 
 .btn-ver-documento i {
   font-size: 14px;
+}
+
+/* Estado sin archivo */
+.no-file {
+  color: #a0aec0;
+  font-size: 12px;
+  padding: 6px 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Paginación más compacta */
+.pagination-container {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #edf2f7;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.btn-pagination {
+  background-color: #f8f9fa;
+  color: #344767;
+  border: 1px solid #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.btn-pagination:hover:not(:disabled) {
+  background-color: #422b7c;
+  color: white;
+  border-color: #422b7c;
+}
+
+.btn-pagination:disabled {
+  background-color: #f8f9fa;
+  color: #cbd5e0;
+  border-color: #e2e8f0;
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  font-size: 12px;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* Filas vacías más discretas */
+.empty-row td {
+  height: 52px;
+  background-color: #fbfbfb;
+}
+
+/* Input file oculto */
+.file-input {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .admin-table-container {
+    margin: 16px;
+    padding: 16px;
+  }
+
+  .custom-table {
+    font-size: 12px;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 10px 12px;
+  }
+}
+
+/* Animación suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-table tr {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Estilos para estados especiales */
+.custom-table td:nth-child(5) {
+  font-weight: 500;
+}
+
+/* Estilo para fechas vencidas */
+.custom-table td:nth-child(5)[data-status="vencido"] {
+  color: #e53e3e;
+}
+
+/* Estilo para fechas próximas a vencer */
+.custom-table td:nth-child(5)[data-status="proximo"] {
+  color: #dd6b20;
 }

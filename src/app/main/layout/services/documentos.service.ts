@@ -22,7 +22,7 @@ export class DocumentosService {
   ) { }
 
   getData(): Observable<any> {
-    this.loading.show(); // Muestra el indicador de carga
+    this.loading.show(); // Muestra el indicador de carga all/escalafon
     return this.http.get<any>(`${this.apiUrl}/documents/all`).pipe(
       // Solicitud HTTP GET
       tap(() => this.loading.hide()), // Oculta el indicador de carga después de la operación exitosa
