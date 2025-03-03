@@ -123,6 +123,8 @@
   padding: 16px;
   border-top: 1px solid #edf2f7;
   background: linear-gradient(to right, #f8f9fa, #ffffff);
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* Contenedor de controles con línea decorativa */
