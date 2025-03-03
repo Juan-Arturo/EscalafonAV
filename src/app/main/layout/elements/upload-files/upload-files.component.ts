@@ -280,7 +280,26 @@ export class UploadFilesComponent {
   uploadFile(event: Event, doc: Documento): void {
     const target = event.target as HTMLInputElement;
     if (target && target.files && target.files[0]) {
-      this.uploadService.uploadFile(target.files[0], doc.id_documento, this.dataUser.informacion_rupeet.datos_personales.id_informacion_rupeet, doc.tipo_documento, doc.nombre_documento);
+      this.uploadService.uploadFile(
+        target.files[0], 
+        doc.id_documento, 
+        this.dataUser.informacion_rupeet.datos_personales.id_informacion_rupeet, 
+        doc.tipo_documento, 
+        doc.nombre_documento
+      ).subscribe({
+        next: (response) => {
+          // Recargar los datos después de una subida exitosa
+          this.loadData(this.dataUser);
+          // Limpiar el input file
+          target.value = '';
+        },
+        error: (error) => {
+          console.error('Error al subir el archivo:', error);
+          // El servicio ya maneja el mensaje de error
+          // Limpiar el input file en caso de error
+          target.value = '';
+        }
+      });
     }
   }
 

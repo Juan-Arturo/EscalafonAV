@@ -20,7 +20,12 @@
         <td>{{calcularDiasRestantes(doc)}}</td>
         <td class="actions-column">
           <div class="file-upload-wrapper">
-            <input type="file" class="file-input" id="fileInput_{{doc.id_documento}}" accept=".pdf,.doc,.docx">
+            <input 
+              type="file" 
+              class="file-input" 
+              id="fileInput_{{doc.id_documento}}" 
+              accept=".pdf,.doc,.docx"
+              (change)="uploadFile($event, doc)">
             <label for="fileInput_{{doc.id_documento}}" class="btn-upload">
               <i class="fas fa-upload"></i> Seleccionar archivo
             </label>
