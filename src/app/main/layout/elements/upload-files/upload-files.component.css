@@ -212,3 +212,24 @@
   height: 53px; /* Ajusta este valor según la altura de tus filas normales */
   background-color: #f9f9f9;
 }
+
+.btn-ver-documento {
+  background-color: #422b7c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-ver-documento:hover {
+  background-color: #2d1d54;
+}
+
+.btn-ver-documento i {
+  font-size: 14px;
+}

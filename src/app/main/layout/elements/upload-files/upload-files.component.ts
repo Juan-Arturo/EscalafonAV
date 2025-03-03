@@ -13,6 +13,7 @@ import { CoreModalService } from '../../../../core/services/core.modal.service';
 import { DocumentosService } from '../../services/documentos.service';
 import { PreofileService } from '../../services/profile.service';
 import { CoreLoadingService } from '../../../../core/services/core.loading.service';
+import { CoreAlertService } from '../../../../core/services/core.alert.service';
 import { RootState } from '../../../../store';
 import { SharedCustomModalComponent } from '../../../../shared/shared-custom-modal/shared-custom-modal.component';
 import { SharedActionsGridComponent } from '../../../../shared/shared-actions-grid/shared-actions-grid.component';
@@ -21,7 +22,8 @@ import { SharedActionsGridComponent } from '../../../../shared/shared-actions-gr
 
 @Component({
   selector: 'upload-files-component',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, SharedCustomModalComponent],
   templateUrl: './upload-files.component.html',
   styleUrl: './upload-files.component.css',
 })
@@ -185,7 +187,8 @@ export class UploadFilesComponent {
     private documentosService: DocumentosService,
     private uploadService: UploadService,
     private profileService: PreofileService,
-    private loading: CoreLoadingService
+    private loading: CoreLoadingService,
+    private alertService: CoreAlertService
   ) { }
   private userSelector = injectSelector<RootState, any>(
     (state) => state.auth.user
@@ -282,10 +285,20 @@ export class UploadFilesComponent {
   }
 
   seeDocument(row: Documento): void {
+    if (!row.documentInfo?.ruta) {
+      this.alertService.error('No hay documento disponible');
+      return;
+    }
 
-    this.uploadService.fetchFile(row.documentInfo?.ruta).subscribe((response) => {
-
-      this.modalService.open(null, row.nombre_documento, null, null, response);
+    this.uploadService.fetchFile(row.documentInfo.ruta).subscribe({
+      next: (response: any) => {
+        // Ahora response debería ser la URL firmada de S3
+        this.modalService.open(null, row.nombre_documento, null, null, response);
+      },
+      error: (error) => {
+        console.error('Error al obtener el documento:', error);
+        this.alertService.error('Error al cargar el documento');
+      }
     });
   }
 

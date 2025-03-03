@@ -60,22 +60,23 @@ export class UploadService {
       );
   }
 
-  fetchFile(ruta: string): Observable<Blob> {
-    // Muestra el loading
+  fetchFile(ruta: string): Observable<any> {
     this.loading.show();
 
     const url = `${this.apiUrl}/uploadFiles/file/${ruta}`;
 
-    return this.http.get<any>(url).pipe(
-      map((response) => {
-        this.loading.hide(); // Oculta el loading
-        return response; // Retorna la respuesta
+    return this.http.get(url).pipe(
+      map((response: any) => {
+        this.loading.hide();
+        // Asumiendo que la respuesta contiene una URL firmada de S3
+        return response.url || response; // Retorna la URL si existe, si no la respuesta completa
       }),
       catchError((error) => {
-        this.loading.hide(); // Oculta el loading en caso de error
-        handleError(error, this.alertService, 'Error al obtener la imagen');
+        this.loading.hide();
+        handleError(error, this.alertService, 'Error al obtener el documento');
         return throwError(error);
       })
     );
   }
 }
+

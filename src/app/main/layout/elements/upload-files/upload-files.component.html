@@ -27,8 +27,8 @@
           </div>
         </td>
         <td>
-          <button (click)="seeDocument(doc)" *ngIf="doc.documentInfo?.ruta">
-            Ver documento
+          <button class="btn-ver-documento" type="button" (click)="seeDocument(doc)" *ngIf="doc.documentInfo?.ruta">
+            <i class="fas fa-eye"></i> Ver documento
           </button>
           <span *ngIf="!doc.documentInfo?.ruta" class="no-file">Sin archivo</span>
         </td>
@@ -55,5 +55,5 @@
 
 
 
-
+<shared-custom-modal-component></shared-custom-modal-component>
 

@@ -21,11 +21,11 @@
         <!-- Mostrar PDF si existe pdfUrl -->
         <ng-container *ngIf="pdfUrl">
           <iframe
-            *ngIf="pdfUrl"
             [src]="pdfUrl | safeUrl"
             width="100%"
             height="600px"
             style="border: none"
+            type="application/pdf"
           ></iframe>
         </ng-container>
 
