@@ -3,6 +3,8 @@ import { TabService } from '../../../../core/services/tab.service';
 import {  FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UploadFilesComponent } from '../upload-files/upload-files.component';
 
+import { PreofileService } from '../../services/profile.service';
+
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
@@ -12,7 +14,7 @@ import { UploadFilesComponent } from '../upload-files/upload-files.component';
 export class RegisterFormComponent implements OnInit {
     dataForm!: FormGroup;
     
-  constructor(public tabService: TabService,private fb: FormBuilder) {}
+  constructor(public tabService: TabService,private fb: FormBuilder, private profileService: PreofileService)  {}
  
 
 
@@ -24,6 +26,8 @@ export class RegisterFormComponent implements OnInit {
 //     correo: ['', [Validators.required, Validators.email]],
 //   });
 // }
+
+curp: string = '';
 
 
   ngOnInit(): void {
@@ -41,5 +45,12 @@ export class RegisterFormComponent implements OnInit {
 
   onSubmit(){
     console.log("guardado...w")
+  }
+
+
+  getInfoCurp(curp: string){
+    this.profileService.getInfo(curp).subscribe((res) => {
+      console.log(res);
+    });
   }
 }
