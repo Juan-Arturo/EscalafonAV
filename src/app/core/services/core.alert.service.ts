@@ -38,6 +38,19 @@ export class CoreAlertService {
     });
   }
 
+
+  // Alerta de error que devuelve una promesa
+  errorPromise(message: string, title: string = '¡Error!') {
+    return Swal.fire({
+      title: title,
+      text: message,
+      icon: 'error',
+      confirmButtonText: 'Aceptar',
+      allowOutsideClick: false, // Deshabilita el cierre al hacer clic fuera de la alerta
+    });
+  }
+
+
   // Alerta de advertencia
   warning(message: string, title: string = '¡Advertencia!') {
     Swal.fire({
