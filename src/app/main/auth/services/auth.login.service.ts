@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { catchError, debounceTime, map, switchMap } from 'rxjs/operators';
 import { CoreAlertService } from '../../../core/services/core.alert.service';
 import { environment } from '../../../../environments/environment';
@@ -52,7 +52,7 @@ export class AuthLoginService {
     localStorage.removeItem('authToken');
     localStorage.removeItem('authUser');
     this.dispatch(logoutReducer());
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/auth/loginMain']);
   }
 
   // isLoggedIn(): string | null {
@@ -66,18 +66,39 @@ export class AuthLoginService {
   }
   
 
+  // isLoggedInInfo(): Observable<boolean> {
+  //   return this.http.get<any>(`${this.apiUrl}/auth/isLoggin`).pipe(
+  //     map((response) => {
+  //       this.dispatch(loginReducer({ user: response.user }));
+  //       return true;
+  //     }),
+  //     catchError((error) =>
+  //       handleError(error, this.alertService, 'Error de autenticación')
+  //     )
+  //   );
+  // }
+
   isLoggedInInfo(): Observable<boolean> {
     return this.http.get<any>(`${this.apiUrl}/auth/isLoggin`).pipe(
       map((response) => {
         this.dispatch(loginReducer({ user: response.user }));
         return true;
       }),
-      catchError((error) =>
-        handleError(error, this.alertService, 'Error de autenticación')
-      )
+      catchError((error) => {
+        // Elimina el token antes de mostrar la alerta
+        localStorage.removeItem('authToken');
+  
+        // Retorna un Observable desde la alerta
+        return from(this.alertService.errorPromise('Tu sesión ha expirado', 'Error de autenticación')).pipe(
+          map(() => {
+            this.logout();
+            return false;
+          })
+        );
+      })
     );
   }
-
+  
   getToken(): string | null {
     return localStorage.getItem('authToken') || '';
   }

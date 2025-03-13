@@ -21,13 +21,9 @@
 
         <!-- Row container -->
         <div class="row gy-4">
-       
-          
-
-
           
           <!-- Etapas list -->
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
             <h4>Etapas de registro</h4>
             <p></p>
 
@@ -41,8 +37,8 @@
             </div>
           </div><!-- End Etapas list -->
       
-        <div class="col-lg-8">
-          <form (ngSubmit)="onSubmit()">
+        <div class="col-lg-9">
+          
           <!-- Form datos personales -->
           <div class="tab-content" [class.active]="isActive('datos-personales')">
             
@@ -60,13 +56,33 @@
             <p></p>
 
             <div class="row gy-4">
+              <form (ngSubmit)="onSubmit()">
+                <div class="form-group col-md-5">
+                  <h6 for="">Búsqueda por CURP: </h6>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="bi bi-person-vcard-fill"></i></div>
+                    </div>
+                    <input type="text" class="form-control" [(ngModel)]="curp" name="searchCurp" [ngModelOptions]="{standalone: true}">
+                    <button type="button" class="btn btn-primary" (click)="getInfoCurp()"><i class="bi bi-search"></i> Buscar</button>
+                  </div>
+                </div>
+
+              <div class="form-group col-md-4">
+              </div>
+
+              <div class="form-group col-md-2">
+              </div>
+
+              </form>  
+              
               <div class="form-group col-md-4">
                 <h6 for="nombre">CURP: </h6>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="bi bi-person-vcard-fill"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                  <input type="text" class="form-control" [(ngModel)]="userData.curp" name="userCurp" [ngModelOptions]="{standalone: true}" readonly disabled>
                 </div>
               </div>
 
@@ -76,7 +92,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="bi bi-person-circle"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                    <input type="text" class="form-control" [(ngModel)]="userData.nombre" name="nombre" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
 
@@ -86,7 +102,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="bi bi-person-circle"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                    <input type="text" class="form-control" [(ngModel)]="userData.apellidoPaterno" name="apellidoPaterno" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
 
@@ -96,7 +112,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="bi bi-person-circle"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                  <input type="text" class="form-control" [(ngModel)]="userData.apellidoMaterno" name="apellidoMaterno" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
 
@@ -106,7 +122,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="bi bi-bank"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                  <input type="text" class="form-control" [(ngModel)]="userData.rfc" name="rfc" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
 
@@ -146,11 +162,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="bi bi-newspaper"></i></div>
                   </div>
-                  <select class="form-select" aria-label="Default select example">
-                    <option></option>
-                    <option value="1">Soltero</option>
-                    <option value="2">Casado</option>
-                  </select>
+                  <input type="text" class="form-control" [(ngModel)]="userData.estadoCivil" name="estadoCivil" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
             </div>
@@ -174,12 +186,12 @@
 
             <div class="row gy-4">
               <div class="form-group col-md-4">
-                <h6 for="nombre">Calle: </h6>
+                <h6 for="calle">Calle: </h6>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="bi bi-signpost-split-fill"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                  <input type="text" class="form-control" [(ngModel)]="userData.calle" name="calle" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
 
@@ -189,7 +201,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="bi bi-hash"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                  <input type="text" class="form-control" [(ngModel)]="userData.noExterior" name="noExterior" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
 
@@ -199,7 +211,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="bi bi-mailbox2-flag"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                  <input type="text" class="form-control" [(ngModel)]="userData.codigoPostal" name="codigoPostal" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
 
@@ -247,7 +259,7 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="bi bi-house-door-fill"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                  <input type="text" class="form-control" [(ngModel)]="userData.colonia" name="colonia" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
             </div>
@@ -461,24 +473,24 @@
               </div>
               <h3 class="bold"><strong>Carga de archivos</strong></h3>
               <hr class="hr">
+              <upload-files-component></upload-files-component>
             </div>
             <p></p>
-
-            <div class="row gy-">
-              <button class="btn btn-primary" type="button">Terminar registro</button>
-            </div>
-
-
           </div><!-- End Form Carga de archivos -->
 
-          </form>  
         </div><!-- End div principal -->
 
-  
-  
         </div><!-- End Row container -->
+        
       </div><!-- End Container -->
 
     </section><!-- End Service Details Section -->
 
   </main>
+
+
+
+
+  <!--<div class="row gy-">
+    <button class="btn btn-primary" type="button">Terminar registro</button>
+  </div>-->

@@ -1,0 +1,373 @@
+.admin-table-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+/* Encabezados minimalistas */
+.custom-table th {
+  background-color: #ffffff;
+  color: #422b7c;
+  padding: 16px 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #422b7c;
+  transition: all 0.3s ease;
+}
+
+/* Celdas con estilo */
+.custom-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #edf2f7;
+  color: #2d3748;
+  vertical-align: middle;
+  transition: all 0.3s ease;
+}
+
+/* Hover elegante en las filas */
+.custom-table tr:hover td {
+  background-color: #f8f9ff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Columnas con ancho específico */
+.custom-table th:nth-child(1) { width: 20%; }
+.custom-table th:nth-child(2) { width: 12%; }
+.custom-table th:nth-child(3) { width: 15%; }
+.custom-table th:nth-child(4) { width: 15%; }
+.custom-table th:nth-child(5) { width: 12%; }
+.custom-table th:nth-child(6) { width: 13%; }
+.custom-table th:nth-child(7) { width: 13%; }
+
+/* Botón de subir archivo elegante */
+.btn-upload {
+  background: linear-gradient(45deg, #422b7c, #563d8c);
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(66, 43, 124, 0.2);
+}
+
+.btn-upload:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(66, 43, 124, 0.3);
+  background: linear-gradient(45deg, #563d8c, #422b7c);
+}
+
+.btn-upload i {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+/* Botón ver documento elegante */
+.btn-ver-documento {
+  background: linear-gradient(45deg, #198754, #1cb46d);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(25, 135, 84, 0.2);
+}
+
+.btn-ver-documento:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 135, 84, 0.3);
+  background: linear-gradient(45deg, #1cb46d, #198754);
+}
+
+.btn-ver-documento i {
+  font-size: 16px;
+}
+
+/* Estado sin archivo con estilo */
+.no-file {
+  color: #718096;
+  font-size: 13px;
+  padding: 8px 14px;
+  background: linear-gradient(to right, #f8f9fa, #f1f3f5);
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Paginación elegante */
+.pagination-container {
+  margin-top: 20px;
+  padding: 16px;
+  border-top: 1px solid #edf2f7;
+  background: linear-gradient(to right, #f8f9fa, #ffffff);
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Contenedor de controles con línea decorativa */
+.pagination-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-end;
+}
+
+.pagination-controls::before {
+  left: -120px;
+}
+
+.pagination-controls::after {
+  right: -120px;
+}
+
+/* Botones de paginación */
+.btn-pagination {
+  background: linear-gradient(45deg, #422b7c, #563d8c);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(66, 43, 124, 0.15);
+}
+
+.btn-pagination:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(66, 43, 124, 0.25);
+}
+
+.btn-pagination:disabled {
+  background: #e2e8f0;
+  color: #a0aec0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.pagination-controls span {
+  font-size: 13px;
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* Filas vacías con estilo */
+.empty-row td {
+  height: 52px;
+  background: linear-gradient(to right, #fbfbfb, #ffffff);
+}
+
+/* Input file oculto */
+.file-input {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+/* Responsive mejorado */
+@media (max-width: 1024px) {
+  .admin-table-container {
+    margin: 16px;
+    padding: 20px;
+  }
+
+  .custom-table {
+    font-size: 13px;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-table-container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .custom-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .btn-upload,
+  .btn-ver-documento {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .pagination-controls {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-table-container {
+    margin: 5px;
+    padding: 10px;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .btn-upload,
+  .btn-ver-documento {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .no-file {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+}
+
+/* Animación suave y elegante */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-table tr {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Estilos para estados especiales */
+.custom-table td:nth-child(5) {
+  font-weight: 600;
+}
+
+/* Estilo para fechas vencidas */
+.custom-table td:nth-child(5)[data-status="vencido"] {
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.1);
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+/* Estilo para fechas próximas a vencer */
+.custom-table td:nth-child(5)[data-status="proximo"] {
+  color: #c2410c;
+  background: rgba(194, 65, 12, 0.1);
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+/* Estilos para el modal */
+::ng-deep .modal-content {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+::ng-deep .modal-header {
+  background: linear-gradient(45deg, #422b7c, #563d8c);
+  border-bottom: none;
+  padding: 20px 24px;
+}
+
+::ng-deep .modal-title {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+::ng-deep .modal-body {
+  padding: 24px;
+  background: #ffffff;
+}
+
+::ng-deep .modal-footer {
+  background: #f8f9fa;
+  border-top: 1px solid #edf2f7;
+  padding: 16px 24px;
+}
+
+::ng-deep .modal .btn-close {
+  color: #ffffff;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .modal .btn-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+::ng-deep .modal-backdrop {
+  background-color: rgba(45, 55, 72, 0.7);
+}
+
+::ng-deep .modal.fade .modal-dialog {
+  transform: scale(0.95);
+  transition: transform 0.3s ease-out;
+}
+
+::ng-deep .modal.show .modal-dialog {
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  ::ng-deep .modal-content {
+    margin: 10px;
+  }
+
+  ::ng-deep .modal-header {
+    padding: 15px;
+  }
+
+  ::ng-deep .modal-body {
+    padding: 15px;
+  }
+
+  ::ng-deep .modal-footer {
+    padding: 10px 15px;
+  }
+
+  ::ng-deep .modal-title {
+    font-size: 16px;
+  }
+}

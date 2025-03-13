@@ -1,0 +1,61 @@
+<div class="admin-table-container">
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Nombre del documento</th>
+        <th>Vigencia</th>
+        <th>Fecha de emisión</th>
+        <th>Fecha de vencimiento</th>
+        <th>Días por vencer</th>
+        <th>Acciones</th>
+        <th>Documento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doc of paginatedData">
+        <td>{{doc.nombre_documento}}</td>
+        <td>{{formatVigencia(doc)}}</td>
+        <td>{{formatFechaEmision(doc)}}</td>
+        <td>{{formatFechaVencimiento(doc)}}</td>
+        <td>{{calcularDiasRestantes(doc)}}</td>
+        <td class="actions-column">
+          <div class="file-upload-wrapper">
+            <input 
+              type="file" 
+              class="file-input" 
+              id="fileInput_{{doc.id_documento}}" 
+              accept=".pdf,.doc,.docx"
+              (change)="uploadFile($event, doc)">
+            <label for="fileInput_{{doc.id_documento}}" class="btn-upload">
+              <i class="bi bi-upload"></i> Cargar documento
+            </label>
+          </div>
+        </td>
+        <td>
+          <button class="btn-ver-documento" type="button" (click)="seeDocument(doc)" *ngIf="doc.documentInfo?.ruta">
+            <i class="bi bi-eye-fill"></i> Ver documento
+          </button>
+          <span *ngIf="!doc.documentInfo?.ruta" class="no-file"><i class="bi bi-archive-fill"></i> Sin archivo</span>
+        </td>
+      </tr>
+      <tr *ngFor="let empty of getEmptyRows()" class="empty-row">
+        <td colspan="7"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination-container">
+    <div class="pagination-controls">
+      <button type="button" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)" class="btn-pagination">
+        <i class="bi bi-caret-left-fill"></i>
+      </button>
+      
+      <span>Página {{currentPage}} de {{totalPages}}</span>
+      <button type="button" [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)" class="btn-pagination">
+        <i class="bi bi-caret-right-fill"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<shared-custom-modal-component></shared-custom-modal-component>

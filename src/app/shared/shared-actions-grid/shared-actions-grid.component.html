@@ -1,0 +1,35 @@
+<!-- Contenedor de los botones de acción agrupados -->
+<div class="btn-group" role="group" aria-label="Action buttons">
+  <!-- Botón para editar, con ícono de lápiz y color primario -->
+  <button
+    *ngIf="params.onEdit"
+    (click)="onEditClick()"
+    type="button"
+    class="btn btn m-2"
+  >
+    <i class="bi bi-pencil-fill text-primary"></i>
+    <!-- Ícono de lápiz con color primario (azul) -->
+  </button>
+
+  <!-- Botón para eliminar, con ícono de papelera y color de alerta (rojo) -->
+  <button
+    *ngIf="params.onDelete"
+    (click)="onDeleteClick()"
+    type="button"
+    class="btn bt m-2"
+  >
+    <i class="bi bi-trash-fill text-danger"></i>
+    <!-- Ícono de papelera con color peligro (rojo) -->
+  </button>
+
+  <!-- Botón para ver, con ícono de ojo y color secundario -->
+  <button
+    *ngIf="params.onView"
+    (click)="onViewClick()"
+    type="button"
+    class="btn m-2"
+  >
+    <i class="bi bi-eye-fill text-secondary"></i>
+    <!-- Ícono de ojo con color secundario (gris) -->
+  </button>
+</div>
